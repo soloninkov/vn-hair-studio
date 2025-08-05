@@ -1,0 +1,84 @@
+.modal-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  font-size: 28px;
+  color: #333;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s ease;
+}
+
+.modal-arrow:hover {
+  background: #4824ff;
+  color: white;
+}
+
+.modal-arrow.left {
+  left: -70px;
+}
+
+.modal-arrow.right {
+  right: -70px;
+}
+
+.modal-close-button-unique {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: #fff;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s ease;
+}
+
+.modal-close-button-unique:hover {
+  background: #ff4444;
+  color: white;
+}
+
+/* ✅ Адаптивність для мобілок */
+@media (max-width: 768px) {
+  .modal-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+
+  .modal-arrow.left {
+    left: 10px; /* ← замість -45px */
+  }
+
+  .modal-arrow.right {
+    right: 10px; /* ← замість -45px */
+  }
+
+  .modal-close-button-unique {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .modal-image {
+    width: 90vw;
+    height: auto;
+  }
+}

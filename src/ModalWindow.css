@@ -1,0 +1,172 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  z-index: 1000;
+}
+
+.modal-backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    rgb(15, 127, 183) 20%,
+    rgba(193, 53, 132, 1) 100%
+  );
+  padding: 40px;
+  border-radius: 16px;
+  width: 500px;
+  height: 400px; /* Збільшена висота */
+  transform: translateY(-50px);
+  transition: transform 0.5s ease;
+  z-index: 1001;
+}
+
+.modal-backdrop.show .modal-content {
+  transform: translateY(0);
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0;
+  outline: none;
+}
+
+.modal-close-button::before,
+.modal-close-button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 2px;
+  background-color: #333;
+}
+
+.modal-close-button::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.modal-close-button::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.social.telegram {
+  content: url(/public/icon/telegram.svg);
+  max-width: 60px;
+  scale: 0.6;
+  margin-right: 8px;
+}
+
+.social.instagram {
+  content: url(/public/icon/instagram.svg);
+  max-width: 60px;
+  scale: 0.6;
+  margin-right: 8px;
+}
+
+.social.phone {
+  content: url(/public/icon/phone.svg);
+  max-width: 40px;
+  scale: 0.6;
+  margin-right: 8px;
+}
+
+.social-button--1,
+.social-button--2 {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 55px;
+  width: 220px;
+  border-radius: 55px;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.social-button--1 {
+  background: #24a1de;
+}
+
+.social-button--2 {
+  background: #c13584;
+}
+
+.social-button--1:hover {
+  filter: drop-shadow(0px 0px 20px #044f74);
+  color: #eeebff;
+}
+
+.social-button--2:hover {
+  filter: drop-shadow(0px 0px 20px #940a58);
+  color: #eeebff;
+}
+
+@media (max-width: 769px) {
+  .modal-content {
+    width: 70%;
+    height: 400px;
+    padding: 30px;
+    margin: 0 auto;
+  }
+
+  .buttons-grid {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .social-button--1,
+  .social-button--2 {
+    width: 100%;
+    height: 45px;
+    font-size: 16px;
+  }
+
+  .social.telegram,
+  .social.instagram,
+  .social.phone {
+    max-width: 40px;
+    scale: 0.5;
+  }
+
+  .modal-backdrop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
