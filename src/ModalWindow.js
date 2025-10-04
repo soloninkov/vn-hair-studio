@@ -62,16 +62,16 @@ const ModalWindow = ({ show, onClose, children }) => {
           </a>
          
           <a
-            href="tel:+420774396964"
+            href="https://www.facebook.com/nik.nk.98"target="_blank"
             className="social-button--1"
           >
-            <span className="social phone" /> +420774396964
+            <span className="social facebook" /> Facebook
           </a>
           <a
-            href="tel:+380973552498"
+            href="tel:+420774396964"
             className="social-button--2"
           >
-            <span className="social phone" /> +380973552498
+            <span className="social phone" /> +420774396964
           </a>
         </div>
         </div>

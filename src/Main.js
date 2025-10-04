@@ -6,7 +6,6 @@ import Banners from './Banners';
 import Hairstyles from './Hairstyles';
 import MenHaircuts from './MenHaircuts';
 import WomenHaircuts from './WomenHaircuts';
-
 import Theme from './Theme';
 import { useTranslation } from "react-i18next";
 import "./i18n"; 
@@ -162,8 +161,8 @@ const resizeObserver = new ResizeObserver((entries) => {
   </div>
 </header>
         <ModalWindow show={showModal} onClose={handleCloseModal}>
-        <h2   style={{   color: "#4824ff" }}> {t("contact")} </h2>
-        <p style={{ fontSize: "22px" }}>
+        <h2   style={{  color: "#4824ff" }}> {t("contact")} </h2>
+        <p style={{ fontSize: "25px" }}>
         {t("modal")}</p>
         </ModalWindow>
 <section className='welcome__container'>
