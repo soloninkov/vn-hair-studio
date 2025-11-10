@@ -161,7 +161,7 @@ const resizeObserver = new ResizeObserver((entries) => {
   </div>
 </header>
         <ModalWindow show={showModal} onClose={handleCloseModal}>
-        <h2   style={{  color: "#4824ff" }}> {t("contact")} </h2>
+        <h2   style={{  color: "black" }}> {t("contact")} </h2>
         <p style={{ fontSize: "25px" }}>
         {t("modal")}</p>
         </ModalWindow>
@@ -311,7 +311,8 @@ const resizeObserver = new ResizeObserver((entries) => {
      
       <div className="vertical-video-container">
         <video className="vertical-video" controls>
-          <source src="/video/maps.mp4" type="video/mp4" />
+          <source src={`${process.env.PUBLIC_URL}/video/maps.mp4`} type="video/mp4" />
+
         </video>
       </div>
       <div className="content-half map-block">

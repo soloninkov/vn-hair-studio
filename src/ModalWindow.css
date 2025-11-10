@@ -1,4 +1,4 @@
-.modal-backdrop {
+/* .modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -175,4 +175,286 @@
     height: 24px;
     margin-right: 10px;
   }
+} */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(224, 229, 236, 0.8); /* світлий злегка матовий фон */
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  z-index: 1000;
+}
+
+.modal-backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* === Модалка === */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  background: #e0e5ec; /* 🔹 світлий нейтральний фон */
+  border-radius: 24px;
+  padding: 40px 30px;
+  box-shadow: 9px 9px 16px #a3b1c6, -9px -9px 16px #ffffff; /* 🔹 неоморфна тінь */
+  transform: translateY(-50px);
+  transition: transform 0.5s ease;
+  z-index: 1001;
+}
+
+.modal-backdrop.show .modal-content {
+  transform: translateY(0);
+}
+
+/* === Кнопка закриття === */
+.modal-close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: #e0e5ec;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+  transition: all 0.3s ease;
+}
+
+.modal-close-button:hover {
+  box-shadow: inset 3px 3px 6px #a3b1c6, inset -3px -3px 6px #ffffff;
+}
+
+.modal-close-button::before,
+.modal-close-button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 2px;
+  background-color: #606060;
+  transition: all 0.3s ease;
+}
+
+.modal-close-button::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.modal-close-button::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* === Контент кнопок === */
+.buttons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+/* Іконки соцмереж */
+.social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin-right: 10px;
+}
+
+.social.telegram {
+  content: url(/public/icon/telegram.svg);
+}
+.social.instagram {
+  content: url(/public/icon/instagram.svg);
+}
+.social.facebook {
+  content: url(/public/icon/facebook.png);
+}
+.social.phone {
+  content: url(/public/icon/phone.svg);
+}
+
+/* === Кнопки соцмереж === */
+.social-button--1,
+.social-button--2 {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  height: 55px;
+  width: 220px;
+  border-radius: 55px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #3b3b58;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  background: #e0e5ec;
+  box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff;
+}
+
+/* Ефект натискання */
+.social-button--1:active,
+.social-button--2:active {
+  box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff;
+}
+
+/* Hover-ефект */
+.social-button--1:hover,
+.social-button--2:hover {
+  color: #000;
+  transform: scale(1.05);
+}
+
+/* === Мобільна адаптація === */
+@media (max-width: 769px) {
+  .modal-content {
+    width: 90%;
+    max-height: 90vh;
+    padding: 25px;
+    overflow-y: auto;
+    text-align: center;
+  }
+
+  .buttons-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .social-button--1,
+  .social-button--2 {
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+  }
+}
+/* === ТЕКСТ ЯК ВИРІЗАНИЙ В КАМЕНІ === */
+.modal-content h1,
+.modal-content h2,
+.modal-content h3,
+.modal-content p,
+.modal-content span,
+.modal-content a {
+  color: #3b3b58; /* темний нейтральний */
+  text-shadow: inset 1px 1px 2px #ffffff,
+    /* світло зверху */ inset -1px -1px 2px #a3b1c6; /* тінь знизу */
+}
+
+/* Якщо браузер не підтримує inset-тінь для тексту, робимо імітацію */
+.modal-content h1,
+.modal-content h2,
+.modal-content h3 {
+  color: #3b3b58;
+  text-shadow: 1px 1px 2px #ffffff, -1px -1px 2px #a3b1c6;
+}
+
+/* Підпис або опис — дрібніше, з більшою втопленістю */
+.modal-content p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4b4b66;
+  text-shadow: 1px 1px 1px #ffffff, -1px -1px 1px #a3b1c6;
+}
+.modal-content h2 {
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+/* === 🌙 ТЕМНА ТЕМА ДЛЯ МОДАЛКИ === */
+html[data-theme="dark"] .modal-backdrop {
+  background: rgba(10, 10, 20, 0.85);
+  backdrop-filter: blur(10px);
+}
+
+html[data-theme="dark"] .modal-content {
+  background: #1b1b27;
+  box-shadow: 9px 9px 16px #0d0d13, -9px -9px 16px #2d2d3f;
+  color: #d4d4e0;
+}
+
+html[data-theme="dark"] .modal-close-button {
+  background: #1b1b27;
+  box-shadow: 5px 5px 10px #0d0d13, -5px -5px 10px #2d2d3f;
+}
+
+html[data-theme="dark"] .modal-close-button:hover {
+  box-shadow: inset 3px 3px 6px #0d0d13, inset -3px -3px 6px #2d2d3f;
+}
+
+html[data-theme="dark"] .modal-close-button::before,
+html[data-theme="dark"] .modal-close-button::after {
+  background-color: #c7c7d6;
+}
+
+/* === ТЕКСТ — ефект вирізаного світлом у темному камені === */
+html[data-theme="dark"] .modal-content h1,
+html[data-theme="dark"] .modal-content h2,
+html[data-theme="dark"] .modal-content h3,
+html[data-theme="dark"] .modal-content p,
+html[data-theme="dark"] .modal-content span,
+html[data-theme="dark"] .modal-content a {
+  color: #c7c7d6;
+  text-shadow: 1px 1px 2px #0d0d13, -1px -1px 2px #2d2d3f;
+}
+
+/* === КНОПКИ СОЦМЕРЕЖ === */
+html[data-theme="dark"] .social-button--1,
+html[data-theme="dark"] .social-button--2 {
+  background: #1b1b27;
+  color: #c7c7d6;
+  box-shadow: 6px 6px 12px #0d0d13, -6px -6px 12px #2d2d3f;
+}
+
+html[data-theme="dark"] .social-button--1:hover,
+html[data-theme="dark"] .social-button--2:hover {
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(72, 36, 255, 0.5);
+}
+
+html[data-theme="dark"] .social-button--1:active,
+html[data-theme="dark"] .social-button--2:active {
+  box-shadow: inset 4px 4px 8px #0d0d13, inset -4px -4px 8px #2d2d3f;
+}
+/* === ТЕКСТ МОДАЛКИ === */
+.modal-title {
+  font-size: 2rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: var(--modal-title-color);
+  transition: color 0.3s ease;
+}
+
+.modal-text {
+  font-size: 1.25rem;
+  color: var(--modal-text-color);
+  transition: color 0.3s ease;
+}
+
+/* === СВІТЛА ТЕМА === */
+html[data-theme="light"] {
+  --modal-title-color: #000000;
+  --modal-text-color: #3b3b58;
+}
+
+/* === ТЕМНА ТЕМА === */
+html[data-theme="dark"] {
+  --modal-title-color: #ffffff;
+  --modal-text-color: #d4d4e0;
 }

@@ -1,38 +1,48 @@
-import React, { useState } from 'react';
 
-import ImageModalWithNavigation from './ImageModalWithNavigation';
-import './ImageModalWithNavigation.css'; // твій CSS
-
-
+import React, { useState, useEffect } from 'react';
+import './Students.css'; // або './ModalShared.css' якщо витягнеш стилі в окремий файл
 
 const importAll = (r) => r.keys().map(r);
 const images = importAll(require.context('/public/images/menHaircuts', false, /\.(png|jpe?g|svg)$/));
 
 const MenHaircuts = () => {
   const [visibleRows, setVisibleRows] = useState(2);
-  const [currentIndex, setCurrentIndex] = useState(null); // індекс зображення
-
+  const [selectedIndex, setSelectedIndex] = useState(null); // index для навігації
   const imagesPerRow = 3;
 
   const showMoreImages = () => {
     setVisibleRows((prev) => prev + 2);
   };
 
-  const handleImageClick = (index) => {
-    setCurrentIndex(index);
+  const openModal = (index) => {
+    setSelectedIndex(index);
   };
 
-  const handleClose = () => {
-    setCurrentIndex(null);
+  const closeModal = () => {
+    setSelectedIndex(null);
   };
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  const nextImage = () => {
+    setSelectedIndex((prev) => (prev === null ? 0 : (prev + 1) % images.length));
   };
 
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  const prevImage = () => {
+    setSelectedIndex((prev) =>
+      prev === null ? images.length - 1 : (prev - 1 + images.length) % images.length
+    );
   };
+
+  // клавіатурні дії: Esc закрити, ← → навігація
+  useEffect(() => {
+    const onKey = (e) => {
+      if (selectedIndex === null) return;
+      if (e.key === 'Escape') closeModal();
+      else if (e.key === 'ArrowRight') nextImage();
+      else if (e.key === 'ArrowLeft') prevImage();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [selectedIndex]);
 
   const renderImages = () => {
     const visibleImages = images.slice(0, visibleRows * imagesPerRow);
@@ -42,7 +52,7 @@ const MenHaircuts = () => {
         src={image}
         alt=""
         className="gallery-image"
-        onClick={() => handleImageClick(index)}
+        onClick={() => openModal(index)}
       />
     ));
   };
@@ -53,21 +63,39 @@ const MenHaircuts = () => {
 
       {visibleRows * imagesPerRow < images.length && (
         <button className="show-more-button" onClick={showMoreImages}>
-          Больше работ
-          <p className="more-icon"></p>
+          Більше робіт
+          <p className="more-icon" />
         </button>
       )}
 
-      {/* Модальне вікно */}
-      <ImageModalWithNavigation
-        images={images}
-        currentIndex={currentIndex}
-        onClose={handleClose}
-        onNext={handleNext}
-        onPrev={handlePrev}
-      />
+      {selectedIndex !== null && (
+        <div className="modal-window-image" onClick={closeModal}>
+          <div className="modal-image-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-arrow left" onClick={prevImage} aria-label="Попереднє">
+              ‹
+            </button>
+
+            <img
+              src={images[selectedIndex]}
+              alt=""
+              className="modal-image"
+              style={{ width: '300px' }}
+            />
+
+            <button className="modal-arrow right" onClick={nextImage} aria-label="Наступне">
+              ›
+            </button>
+
+            <button
+              className="modal-close-unique"
+              onClick={closeModal}
+              aria-label="Закрити"
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
-export default MenHaircuts;
 
+export default MenHaircuts;

@@ -2,33 +2,55 @@
 @import url("https://fonts.googleapis.com/css2?family=Nabla:EDPT,EHLT@30..200,24&display=swap");
 
 html[data-theme="light"] {
-  --main-background: white;
+  --main-background: #ffffff;
   --header-background: #ffffff;
   --service-background: #eeebff;
-  --main-text-color: black;
+  --main-text-color: #000000;
   --switch-background: #eeebff;
-  --theme-background: white;
+  --theme-background: #ffffff;
   --title-border-color: #4824ff;
   --main-elements-color: #eeebff;
   --elements-color: #eeebff;
   --elements-text-color: #4824ff;
   --tag-text-color: #48244f;
   --selected-tag-background: #4001a1;
+
+  /* меню */
+  --menu-bg: #eeebff;
+  --menu-border: rgba(72, 36, 255, 0.15);
+  --menu-button-bg: #ffffff;
+  --menu-button-border: rgba(72, 36, 255, 0.15);
+  --menu-text: #000000;
+  --menu-hover-bg: #4824ff;
+  --menu-hover-text: #ffffff;
+  --menu-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
+
 html[data-theme="dark"] {
-  --main-background: black;
-  --header-background: black;
-  --service-background: black;
-  --main-text-color: white;
+  --main-background: #000000;
+  --header-background: #000000;
+  --service-background: #000000;
+  --main-text-color: #ffffff;
   --switch-background: #eeebff;
-  --theme-background: black;
+  --theme-background: #000000;
   --title-border-color: #4824ff;
   --main-elements-color: #eeebff;
   --elements-color: #eeebff;
-  --elements-text-color: white;
+  --elements-text-color: #ffffff;
   --tag-text-color: #48244f;
   --selected-tag-background: #4001a1;
+
+  /* меню */
+  --menu-bg: #000000;
+  --menu-border: rgba(255, 255, 255, 0.15);
+  --menu-button-bg: #ffffff;
+  --menu-button-border: rgba(255, 255, 255, 0.15);
+  --menu-text: #000000;
+  --menu-hover-bg: #4824ff;
+  --menu-hover-text: #ffffff;
+  --menu-shadow: 0 4px 12px rgba(72, 36, 255, 0.35);
 }
+
 body {
   margin-left: 5%;
   margin-right: 5%;
@@ -121,47 +143,109 @@ header a:hover {
   gap: 8px;
 }
 
+/* === НЕОНОВА КНОПКА === */
 .btn {
   position: relative;
   height: clamp(2.5rem, 2.011rem + 2.11vw, 3.438rem);
   width: clamp(5.625rem, 3.345rem + 9.86vw, 10rem);
   border-radius: clamp(0.6rem, 1rem + 0.5vw, 1.7rem);
-  background: #0606cc;
-  border: none;
-  color: white;
+  background: transparent; /* 🔥 прозорий фон */
+  border: 1px solid rgb(146, 148, 248);
+  color: #4824ff;
   font-weight: 500;
   font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
-  transition: 0.5s ease-in-out;
+  transition: all 0.4s ease;
   overflow: hidden;
-  margin-right: 2%;
   cursor: pointer;
   outline: none;
-  min-width: 6rem;
+  box-shadow: 0 0 10px rgba(146, 148, 248, 0.25);
 }
 
+/* Світловий “блік” */
 .btn::before {
   content: "";
   position: absolute;
-  height: 300px;
-  width: 30px;
-  background: #ffffffbd;
-  filter: blur(2px);
-  transition: 1.5s;
-  transform: rotate(-20deg) translateX(-50px) translateY(-200px);
+  height: 250%;
+  width: 40px;
+  background: rgba(255, 255, 255, 0.6);
+  filter: blur(4px);
+  transition: transform 1.2s ease;
+  transform: rotate(-20deg) translateX(-120%) translateY(-50%);
 }
 
 .btn:hover::before {
-  transform: rotate(-20deg) translateX(200px);
+  transform: rotate(-20deg) translateX(400%) translateY(-50%);
 }
 
+/* Hover-ефект */
+.btn:hover {
+  color: #4824ff;
+  border-color: #85aeff;
+  box-shadow: 0 0 25px rgba(146, 148, 248, 0.8);
+  transform: scale(1.05);
+}
+
+/* Ефект натискання */
+.btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 10px rgba(146, 148, 248, 0.6);
+}
+
+/* Активна кнопка (наприклад, вибрана) */
+.btn.selected {
+  background: linear-gradient(90deg, #4824ff, #85aeff, #85ebff, #4824ff);
+  background-size: 300% 100%;
+  animation: moveGradient 6s linear infinite;
+  border: none;
+  color: #4824ff;
+  box-shadow: 0 0 25px rgba(146, 148, 248, 0.9);
+}
+
+/* Анімація рухомого градієнта */
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+/* === ПЕРЕМИКАЧ (switch) === */
 .switch {
   width: clamp(4.375rem, 3.544rem + 3.6vw, 6.375rem);
   height: clamp(2.5rem, 2.11rem + 1.69vw, 3.438rem);
   border-radius: clamp(0.6rem, 1rem + 0.5vw, 1.7rem);
-  background-color: #eeebff;
-  pointer-events: auto;
-  overflow: hidden;
+  background: transparent; /* 🔥 прозорий фон */
+  border: 1px solid rgb(146, 148, 248);
+  box-shadow: 0 0 10px rgba(146, 148, 248, 0.3);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.switch:hover {
+  box-shadow: 0 0 20px rgba(146, 148, 248, 0.8);
+  transform: scale(1.05);
+}
+
+/* Світловий ефект у середині */
+.switch::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(146, 148, 248, 0.2),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.switch:hover::before {
+  opacity: 1;
 }
 
 .theme {
@@ -222,54 +306,97 @@ header a:hover {
 }
 
 @media (max-width: 769px) {
+  /* === ГОЛОВНИЙ КОНТЕЙНЕР === */
   .menu {
     flex-direction: column;
     position: absolute;
     top: 100%;
-    right: 50px;
-    color: white;
-    background: rgb(14, 0, 0);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 200px;
-    padding: 10px 0;
-    border-radius: 8px;
-    transform: scale(0);
+    right: 15px;
+    background: var(--menu-bg);
+    border: 1px solid var(--menu-border);
+    width: 190px;
+    padding: 12px 10px;
+    border-radius: 16px;
+    box-shadow: var(--menu-shadow);
+    transform: translateY(-10px);
     opacity: 0;
     pointer-events: none;
+    transition: all 0.35s ease;
     z-index: 1000;
+    align-items: stretch;
   }
 
   .menu.open {
-    transform: scale(1);
+    transform: translateY(0);
     opacity: 1;
     pointer-events: auto;
   }
 
-  .burger-menu {
+  /* === КНОПКИ МЕНЮ === */
+  .menu a {
     display: block;
-
-    height: clamp(2.5rem, 1.721rem + 3.37vw, 4.375rem);
-    width: clamp(2.5rem, 1.721rem + 3.37vw, 4.375rem);
-    background: url(/public/icon/menu.png) no-repeat center;
-    background-size: cover;
-    cursor: pointer;
-    position: relative;
+    width: calc(100% - 30px);
+    text-align: left;
+    padding: 10px 14px;
+    margin: 6px 0;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: var(--menu-text);
+    background: var(--menu-button-bg);
+    border: 1px solid var(--menu-button-border);
+    transition: all 0.25s ease;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.15),
+      inset -2px -2px 5px rgba(255, 255, 255, 0.4);
+    /* 🪶 ефект гравіювання тексту */
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4),
+      -1px -1px 2px rgba(0, 0, 0, 0.25);
   }
 
+  .menu a:hover {
+    background: var(--menu-hover-bg);
+    color: var(--menu-hover-text);
+    transform: translateX(2px);
+    box-shadow: 0 0 10px rgba(72, 36, 255, 0.5);
+    text-shadow: none; /* 🔹 при наведенні текст стає чистим */
+  }
+
+  /* === ІКОНКА БУРГЕРА === */
+  .burger-menu {
+    display: block;
+    height: 42px;
+    width: 42px;
+    border-radius: 10px;
+    background: var(--elements-color) url(/public/icon/menu.png) no-repeat
+      center;
+    background-size: 60%;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2),
+      -2px -2px 6px rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .burger-menu:hover {
+    box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.15),
+      inset -1px -1px 4px rgba(255, 255, 255, 0.1);
+  }
+
+  /* === ХЕДЕР === */
   .header-content {
     justify-content: space-between;
     align-items: center;
-
-    padding: 0;
+    padding: 0 10px;
   }
+
   .burger-menu,
   .header-button {
     justify-content: space-between;
   }
-  .menu a {
-    text-align: left;
-    width: 100%;
-    padding: 10px 20px;
+
+  /* === РОЗДІЛЬНИК МІЖ КНОПКАМИ === */
+  .menu a:not(:last-child) {
+    border-bottom: 1px solid rgba(72, 36, 255, 0.1);
   }
 }
 
@@ -277,9 +404,17 @@ header a:hover {
 .welcome-block {
   height: 800px;
   display: flex;
-  justify-content: space-between;
-  place-items: center;
+  justify-content: space-between; /* ← тепер буде працювати */
+  align-items: center; /* ← замість place-items */
+  gap: 2rem; /* трохи повітря між лівою і правою частиною */
+  padding: 0 4vw; /* щоб не прилипало до країв */
 }
+
+/* якщо в тебе є ліва колонка з текстом */
+.welcome-block .first-block {
+  width: 50%;
+}
+
 .welcome-block h1 {
   font-size: clamp(1.875rem, 1.375rem + 2.5vw, 3.25rem);
 }
@@ -316,25 +451,67 @@ header a:hover {
     background-position: 0% 50%;
   }
 }
+
+/* 👉 ПРАВА КОЛОНКА (картинка) */
 .main-image-box {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* РАНІШЕ БУЛО margin: 20px auto 0 auto; — це і ламало flex */
+  margin-top: 20px; /* тільки зверху, без auto з боків */
   width: 45%;
+  max-width: 460px;
 }
 
+/* Перше зображення (людина) */
 .first-image-layer {
   position: absolute;
   z-index: 3;
-  height: 34.375rem;
+  width: 85%;
+  height: auto;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%); /* Центруємо */
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  pointer-events: none;
 }
 
+/* Друге зображення (фон) */
 .second-image-layer {
-  height: 34.375rem;
-  width: 34.375rem;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  z-index: 1;
 }
 
+/* === Планшети (до 1024px) === */
+@media (max-width: 1024px) {
+  .welcome-block {
+    gap: 1.5rem;
+  }
+
+  .welcome-block .first-block {
+    width: 50%;
+  }
+
+  .main-image-box {
+    width: 55%;
+    max-width: 440px;
+    margin-top: 20px;
+  }
+
+  .first-image-layer {
+    width: 90%;
+  }
+
+  .second-image-layer {
+    width: 100%;
+  }
+}
+
+/* === Мобільна адаптація (до 769px) === */
 @media (max-width: 769px) {
   .welcome-block {
     display: flex;
@@ -348,35 +525,122 @@ header a:hover {
     max-width: 100%;
     text-align: center;
     margin-top: 1rem;
+    width: 100%;
   }
 
   .main-image-box {
-    max-width: 100%;
-    height: 300px;
+    width: 90%;
+    max-width: 360px;
+    aspect-ratio: 1 / 1;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    position: relative;
   }
 
   .first-image-layer {
-    height: 300px;
-    max-width: 100%;
     position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 3;
+    transform: none;
   }
 
   .second-image-layer {
-    margin-top: -1rem;
-    height: 359px;
-    max-width: 350px;
     position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 1;
   }
 }
 
 /* __________________________________ */
+/* === КНОПКА "КОНТАКТУВАТИ" — як у портфоліо, але без синього фону === */
+.btn {
+  text-decoration: none;
+  border: 1px solid rgb(146, 148, 248);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2.5rem;
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+  color: var(--elements-text-color);
+  background: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Світла тема */
+html[data-theme="light"] .btn {
+  color: #4824ff;
+  background: #eeebff;
+  box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+}
+
+/* Темна тема */
+html[data-theme="dark"] .btn {
+  color: #ffffff;
+  background: #0f0f1a;
+  box-shadow: 5px 5px 10px #050509, -5px -5px 10px #1c1c27;
+}
+
+/* Hover — тільки світіння, без кольору */
+.btn:hover {
+  background: inherit;
+  color: var(--elements-text-color);
+  box-shadow: 0 0 15px rgba(72, 36, 255, 0.6), 0 0 30px rgba(146, 148, 248, 0.3);
+  animation: glowPulse 1.6s infinite alternate ease-in-out;
+  transform: translateY(-2px);
+}
+
+/* Плавне пульсування світла */
+@keyframes glowPulse {
+  0% {
+    box-shadow: 0 0 10px rgba(72, 36, 255, 0.4),
+      0 0 20px rgba(146, 148, 248, 0.2);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(72, 36, 255, 0.8),
+      0 0 45px rgba(146, 148, 248, 0.5);
+  }
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(146, 148, 248, 0.3),
+    transparent
+  );
+  transition: all 650ms;
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+/* ============================================================ */
+/* === СЕКЦІЯ "ПОСЛУГИ" === */
 .service-block {
   width: 100%;
+  padding: 60px 0;
+  text-align: center;
 }
+
 .service-title {
   background: linear-gradient(
     to right,
@@ -392,51 +656,18 @@ header a:hover {
   color: transparent;
   background-size: 200%;
   animation: gradientAnimation 5s linear infinite;
+  font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 40px;
 }
 
+/* === СІТКА === */
 .service-block-grid {
-  display: flex;
-  flex-wrap: wrap;
-
-  flex-direction: column;
-  gap: 15px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
   width: 100%;
-  align-items: flex-start;
   justify-items: center;
-}
-
-.tag-i {
-  display: flex;
-  margin: 0 auto;
-  align-items: center;
-  font-size: clamp(1.125rem, 0.93rem + 0.85vw, 1.5rem);
-  font-weight: 500;
-  background: var(--service-background);
-  border: 1px solid rgb(146, 148, 248);
-  color: var(--elements-text-color);
-  padding: 0.75rem 1rem;
-  border-radius: 1.5rem;
-  text-align: left;
-  gap: 0.75rem;
-  cursor: pointer;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.tag-icon.icon-dark {
-  background: url("/public/icon/check.png") no-repeat center center;
-  width: 1.5rem;
-  height: 1.5rem;
-  background-size: contain;
-  margin-right: 8px;
-}
-
-.tag-icon.icon-light {
-  background: url("/public/icon/check_d.png") no-repeat center center;
-  width: 2.125rem;
-  height: 2.125rem;
-  background-size: contain;
-  margin-right: 8px;
 }
 
 @media (min-width: 768px) {
@@ -447,11 +678,68 @@ header a:hover {
 
 @media (min-width: 1024px) {
   .service-block-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 30px 40px;
+    max-width: 900px;
+    margin: 0 auto;
   }
 }
 
+/* === ПЛИТКИ === */
+.tag-i {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 1rem 1.25rem;
+  border-radius: 1.5rem;
+  width: 90%;
+  max-width: 400px;
+  font-size: clamp(1rem, 0.9rem + 0.4vw, 1.3rem);
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  cursor: default;
+}
+
+/* Світла тема — як у модалці (3D-ефект) */
+html[data-theme="light"] .tag-i {
+  background: #e0e5ec;
+  color: #3b3b58;
+  box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff;
+  border: 1px solid rgba(146, 148, 248, 0.3);
+}
+
+/* Темна тема — глянцева неонова плитка */
+html[data-theme="dark"] .tag-i {
+  background: #0e0e18;
+  color: #eeebff;
+  border: 1px solid rgba(146, 148, 248, 0.2);
+  box-shadow: 4px 4px 10px #050509, -4px -4px 10px #1c1c27;
+}
+
+/* Іконки */
+.tag-icon.icon-dark {
+  background: url("/public/icon/check.png") no-repeat center center;
+  width: 1.6rem;
+  height: 1.6rem;
+  background-size: contain;
+  flex-shrink: 0;
+}
+
+.tag-icon.icon-light {
+  background: url("/public/icon/check_d.png") no-repeat center center;
+  width: 1.6rem;
+  height: 1.6rem;
+  background-size: contain;
+  flex-shrink: 0;
+}
+
+/* === КНОПКА "БІЛЬШЕ" === */
 .tag-1 {
+  color: #4824ff;
   text-decoration: none;
   border: 1px solid rgb(146, 148, 248);
   border-radius: 24px;
@@ -462,16 +750,19 @@ header a:hover {
   align-items: center;
   padding: 1rem 3rem;
   font-size: 1.5rem;
-  color: var(--elements-text-color);
+
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .tag-1:hover {
   box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
+
+  color: #4824ff;
+  transform: translateY(-2px);
 }
 
-.tag-1:before {
+.tag-1::before {
   content: "";
   position: absolute;
   top: 0;
@@ -487,9 +778,20 @@ header a:hover {
   transition: all 650ms;
 }
 
-.tag-1:hover:before {
+.tag-1:hover::before {
   left: 100%;
 }
+
+/* === АНІМАЦІЯ ГРАДІЄНТУ === */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .portfolio-block {
   height: auto;
 }
@@ -525,13 +827,17 @@ header a:hover {
   margin: 0;
 }
 
+/* === КОНТЕЙНЕР КНОПОК === */
 .portfolio-block .tag-container {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
+/* === КНОПКИ === */
 .tag {
   text-decoration: none;
   border: 1px solid rgb(146, 148, 248);
@@ -541,19 +847,27 @@ header a:hover {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem 1rem;
-  font-size: clamp(1.125rem, 0.93rem + 0.85vw, 1.5rem);
-  color: var(--elements-text-color);
+  padding: 1rem 1.5rem;
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.3rem);
+  color: #4824ff;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
+  background: transparent; /* 🔥 більше не сірий */
+  box-shadow: 0 0 8px rgba(146, 148, 248, 0.25);
 }
 
+/* Ефект при наведенні */
 .tag:hover {
-  box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
+  color: #4824ff;
+  border-color: #85aeff;
+  box-shadow: 0 0 20px rgba(146, 148, 248, 0.7);
+  transform: scale(1.06);
 }
 
-.tag:before {
+/* Неонова хвиля */
+.tag::before {
   content: "";
   position: absolute;
   top: 0;
@@ -563,26 +877,50 @@ header a:hover {
   background: linear-gradient(
     120deg,
     transparent,
-    rgba(146, 148, 248, 0.4),
+    rgba(146, 148, 248, 0.6),
     transparent
   );
-  transition: all 650ms;
+  transition: left 0.6s ease;
 }
 
-.tag:hover:before {
+.tag:hover::before {
   left: 100%;
 }
 
-.tag.selected {
-  background-color: rgb(146, 148, 248);
-  color: #fff;
-  border-color: rgb(146, 148, 248);
+/* === АКТИВНА КНОПКА === */
+.tag.selected,
+.tag.active {
+  background: linear-gradient(90deg, #4824ff, #85aeff, #85ebff, #4824ff);
+  background-size: 300% 100%;
+  animation: moveGradient 6s linear infinite;
+  color: #4824ff;
+  border: none;
+  box-shadow: 0 0 25px rgba(146, 148, 248, 0.9);
+  transform: scale(1.08);
 }
 
-.tag.active {
-  background-color: rgb(146, 148, 248);
-  color: #fff;
-  border-color: rgb(146, 148, 248);
+/* Анімація градієнта */
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+/* Ефект натискання */
+.tag:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 10px rgba(146, 148, 248, 0.6);
+}
+
+/* === АДАПТАЦІЯ ДЛЯ МОБІЛЬНИХ === */
+@media (max-width: 600px) {
+  .tag {
+    font-size: 0.9rem;
+    padding: 0.7rem 1.2rem;
+  }
 }
 
 /* Медіазапит для екранів <= 769px */
@@ -674,6 +1012,7 @@ header a:hover {
 }
 
 /* ________________________ */
+/* === ЗАГОЛОВОК "CENY" === */
 .title-price {
   background: linear-gradient(
     to right,
@@ -689,6 +1028,12 @@ header a:hover {
   color: transparent;
   background-size: 200%;
   animation: price 5s linear infinite;
+  font-size: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  line-height: 1;
 }
 
 @keyframes price {
@@ -699,62 +1044,108 @@ header a:hover {
     background-position: 0% 50%;
   }
 }
-.logo__price {
-  max-width: 50%;
-}
-.price-image {
-  position: relative;
-  top: -155px;
-  left: 0px;
-  max-width: 100%;
-  max-height: 100%;
-}
-.price-block-content {
-  display: flex;
-  gap: 10px;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-.price-block-half {
-  flex: 1; /* Кожен блок займає 50% */
-  max-width: 50%;
-  position: relative;
-}
 
-.prices-block {
+/* === КОНТЕЙНЕР СЕКЦІЇ === */
+.price-block {
+  width: 100%;
+  padding: 3rem 0;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+}
+
+/* === КОНТЕНТ У ДВОХ КОЛОНКАХ === */
+.price-block-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* вирівнює логотип і прайси */
+  width: 100%;
+  gap: 20px;
+}
+
+/* === ЛІВА ЧАСТИНА (Ceny + логотип) === */
+.price-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: center;
-  margin-top: -195px;
+  flex: 1;
+  max-width: 45%;
+}
+
+.logo__price {
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  max-width: 65%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.price-image {
+  position: relative;
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.price-image:hover {
+  transform: scale(1.05);
+}
+
+/* === ПРАВА ЧАСТИНА (список цін) === */
+.price-block-half {
+  flex: 1;
+  max-width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .price-block-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* Відступи між рядками */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  width: 100%;
 }
 
+/* === КАРТКИ ЦІН (3D-ефект) === */
 .tag-price {
   display: flex;
-  margin: 0;
-  gap: 5px;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 15px;
-  background-color: var(--service-background);
-  border: 2px solid rgb(146, 148, 248);
-  color: var(--elements-text-color);
-  border-radius: 24px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тінь для блоку */
-}
-.price-value {
-  margin-bottom: 12px;
-  font-size: 35px;
-  text-align: center;
+  padding: 14px 18px;
+  border-radius: 18px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.3s ease;
+  cursor: default;
 }
 
+/* 🌞 СВІТЛА ТЕМА */
+html[data-theme="light"] .tag-price {
+  background: #e0e5ec;
+  border: 1px solid rgba(146, 148, 248, 0.25);
+  color: #3b3b58;
+  box-shadow: 3px 3px 6px #a3b1c6, -3px -3px 6px #ffffff;
+}
+
+/* 🌙 ТЕМНА ТЕМА */
+html[data-theme="dark"] .tag-price {
+  background: #0f0f1a;
+  border: 1px solid rgba(146, 148, 248, 0.2);
+  color: #eeebff;
+  box-shadow: 2px 2px 5px #050509, -2px -2px 5px #1c1c27;
+}
+
+/* Hover ефект */
+.tag-price:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 16px rgba(72, 36, 255, 0.25);
+}
+
+/* === ТЕКСТ І ЦІНИ === */
 .service-name {
-  font-size: clamp(1.25rem, 1.037rem + 1.06vw, 1.875rem);
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.5rem);
   font-weight: 500;
 }
 
@@ -763,25 +1154,144 @@ header a:hover {
   align-items: center;
 }
 
+.price-value {
+  font-size: clamp(1.4rem, 1rem + 1vw, 2rem);
+  font-weight: 700;
+  color: inherit;
+  text-shadow: 1px 1px 2px rgba(146, 148, 248, 0.25);
+}
+
 .icon-price {
-  width: 34px;
-  height: 34px;
+  width: 28px;
+  height: 28px;
   background: url("/public/icon/koruna.png") no-repeat center center;
   background-size: contain;
   margin-left: 5px;
 }
-@media (max-width: 769px) {
-  .vn_studio {
-    display: none; /* Прибираємо блок з фото */
+
+/* === АДАПТАЦІЯ ПІД ПЛАНШЕТ === */
+@media (max-width: 1024px) {
+  .price-block-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 25px;
   }
 
-  .prices-block {
-    max-width: 100%; /* Робимо блок з прайсами на всю ширину */
-    margin-top: 0; /* Прибираємо зайві відступи */
+  .price-left {
+    align-items: center;
+    max-width: 100%;
+  }
+
+  .logo__price {
+    margin: 0;
+    max-width: 45%;
+  }
+
+  .price-block-half {
+    max-width: 90%;
+  }
+
+  .price-block-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .tag-price {
+    padding: 16px 20px;
+  }
+
+  .price-value {
+    font-size: 1.8rem;
+  }
+}
+
+/* === ДО 500px (2 плитки в ряд) === */
+@media (max-width: 500px) {
+  .price-block {
+    align-items: center;
+    text-align: center;
+  }
+
+  .title-price {
+    text-align: center;
   }
 
   .price-block-content {
-    gap: 0; /* Прибираємо відступи між блоками */
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .price-left {
+    align-items: center;
+  }
+
+  .logo__price {
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 60%;
+  }
+
+  .price-block-half {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .price-block-grid {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: 16px;
+  }
+
+  .tag-price {
+    text-align: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+/* === МЕНШЕ 500px (по 1 плитці в ряд + центр) === */
+@media (max-width: 499px) {
+  .price-block {
+    align-items: center;
+    text-align: center;
+  }
+
+  .title-price {
+    text-align: center;
+  }
+
+  .logo__price {
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 90%;
+  }
+
+  .price-block-half {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .price-block-grid {
+    grid-template-columns: 1fr;
+    width: 90%;
+    justify-items: center;
+    gap: 10px;
+  }
+
+  .tag-price {
+    width: 100%;
+    font-size: 1rem;
+    padding: 16px 22px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .price-value {
+    font-size: 1.6rem;
   }
 }
 
@@ -975,7 +1485,6 @@ header a:hover {
   margin-bottom: 10px;
 }
 
-/* Список пунктів з emoji */
 .point {
   font-size: 18px;
   margin-bottom: 10px;

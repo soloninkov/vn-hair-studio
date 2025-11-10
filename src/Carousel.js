@@ -1,117 +1,77 @@
-// import React , {useState, useRef, useEffect } from 'react';
-// import './Carousel.css';
-
-// const importAll = (r) => r.keys().map(r);
-// const images = importAll(require.context('/public/images/all', false, /\.(png|jpe?g|svg)$/));
-
-// const Carousel = ({ direction }) => {
-//   const carouselRef = useRef(null);
-//   const [isHovered, setIsHovered] = useState(false);
-//   const requestIdRef = useRef(null);
-//   const startPositionRef = useRef(0);
-//   const [selectedImage, setSelectedImage] = useState(null);
-
-//   const closeModal = () => {
-//     setSelectedImage(null);
-//   };
-
-//   useEffect(() => {
-//     const carousel = carouselRef.current;
-  
-//     const animate = () => {
-//       if (!isHovered) {
-//         startPositionRef.current += direction === 'left' ? -0.6 : 0.6;
-  
-//         if (startPositionRef.current >= carousel.scrollWidth / 2) {
-//           startPositionRef.current = 0;
-//         } else if (startPositionRef.current <= 0) {
-//           startPositionRef.current = carousel.scrollWidth / 2;
-//         }
-  
-//         carousel.scrollLeft = startPositionRef.current;
-//       }
-  
-//       requestIdRef.current = requestAnimationFrame(animate);
-//     };
-  
-//     requestIdRef.current = requestAnimationFrame(animate);
-  
-//     return () => cancelAnimationFrame(requestIdRef.current);
-//   }, [direction, isHovered]);
-  
-
-//   return (
-//     <div
-//         className="carousel-container"
-//         ref={carouselRef}
-//         onMouseEnter={() => setIsHovered(true)}
-//         onMouseLeave={() => setIsHovered(false)}
-//     >
-//        <div className='carousel-content'>
-//         {images.map((image, index) => (
-//             <img key={index} src={image} className='carousel-image' onClick={() => setSelectedImage(image)}/>
-//         ))}
-//          </div>
-//          {selectedImage && (
-//             <div className='modal-window-image' onClick={closeModal}> 
-//             <div style={{display: 'flex'}} onClick={(e) => e.stopPropagation()}> 
-//                 <img src={selectedImage}  alt=''  className='modal-image'/>
-//                 <p> <button onClick={closeModal} className='modal-image-close-button' ></button> </p>
-//             </div>
-//             </div>
-//          )}
-//     </div>
-// );
-// };
-
-// export default Carousel;
-
-
 import React, { useState, useRef, useEffect } from 'react';
 import './Carousel.css';
 
+// Функція для імпорту всіх зображень із папки
 const importAll = (r) => r.keys().map(r);
-const images = importAll(require.context('/public/images/all', false, /\.(png|jpe?g|svg)$/));
 
-const Carousel = ({ direction }) => {
+// Імпорт із різних директорій
+const allImages = importAll(require.context('/public/images/all', false, /\.(png|jpe?g|svg)$/));
+const menImages = importAll(require.context('/public/images/menHaircuts', false, /\.(png|jpe?g|svg)$/));
+const womenImages = importAll(require.context('/public/images/womenHaircuts', false, /\.(png|jpe?g|svg)$/));
+const studentsImages = importAll(require.context('/public/images/students', false, /\.(png|jpe?g|svg)$/));
+const hairstylesImages = importAll(require.context('/public/images/hairstyles', false, /\.(png|jpe?g|svg)$/));
+
+// Об’єднуємо всі масиви в один
+const images = [
+  ...allImages,
+  ...menImages,
+  ...womenImages,
+  ...studentsImages,
+  ...hairstylesImages,
+];
+
+const Carousel = ({ direction = 'right' }) => {
   const carouselRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
-  const requestIdRef = useRef(null);
-  const startPositionRef = useRef(0);
   const [selectedIndex, setSelectedIndex] = useState(null);
 
+  const positionRef = useRef(0);
+  const velocity = 0.07; // швидкість руху — трохи повільніша для плавності
+  const frameRef = useRef(null);
+
   const closeModal = () => setSelectedIndex(null);
+  const nextImage = () => setSelectedIndex((prev) => (prev + 1) % images.length);
+  const prevImage = () => setSelectedIndex((prev) => (prev - 1 + images.length) % images.length);
 
-  const nextImage = () => {
-    setSelectedIndex((prev) => (prev + 1) % images.length);
-  };
+  // Закриття по Esc
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (selectedIndex !== null && e.key === 'Escape') closeModal();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedIndex]);
 
-  const prevImage = () => {
-    setSelectedIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-
+  // Плавна анімація прокрутки
   useEffect(() => {
     const carousel = carouselRef.current;
+    if (!carousel) return;
 
-    const animate = () => {
-      if (!isHovered) {
-        startPositionRef.current += direction === 'left' ? -0.6 : 0.6;
+    let lastTime = performance.now();
 
-        if (startPositionRef.current >= carousel.scrollWidth / 2) {
-          startPositionRef.current = 0;
-        } else if (startPositionRef.current <= 0) {
-          startPositionRef.current = carousel.scrollWidth / 2;
+    const animate = (now) => {
+      const delta = now - lastTime;
+      lastTime = now;
+
+      if (!isHovered && carousel.scrollWidth > carousel.clientWidth) {
+        const scrollAmount = velocity * delta * (direction === 'left' ? -1 : 1);
+        positionRef.current += scrollAmount;
+
+        // безшовна прокрутка
+        if (positionRef.current >= carousel.scrollWidth / 2) {
+          positionRef.current = 0;
+        } else if (positionRef.current <= 0) {
+          positionRef.current = carousel.scrollWidth / 2;
         }
 
-        carousel.scrollLeft = startPositionRef.current;
+        carousel.scrollLeft = positionRef.current;
       }
 
-      requestIdRef.current = requestAnimationFrame(animate);
+      frameRef.current = requestAnimationFrame(animate);
     };
 
-    requestIdRef.current = requestAnimationFrame(animate);
-
-    return () => cancelAnimationFrame(requestIdRef.current);
+    frameRef.current = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameRef.current);
   }, [direction, isHovered]);
 
   return (
@@ -122,35 +82,34 @@ const Carousel = ({ direction }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="carousel-content">
-        {images.map((image, index) => (
+        {/* Подвоюємо список для плавного циклу */}
+        {[...images, ...images].map((image, index) => (
           <img
             key={index}
             src={image}
             className="carousel-image"
-            onClick={() => setSelectedIndex(index)}
+            onClick={() => setSelectedIndex(index % images.length)}
             alt=""
+            loading="lazy"
           />
         ))}
       </div>
 
+      {/* Модальне вікно */}
       {selectedIndex !== null && (
         <div className="modal-window-image" onClick={closeModal}>
           <div
             className="modal-image-content"
             onClick={(e) => e.stopPropagation()}
           >
-            <button className="modal-arrow left" onClick={prevImage}>
-              ‹
-            </button>
+            <button className="modal-arrow left" onClick={prevImage}>‹</button>
             <img
               src={images[selectedIndex]}
               alt=""
               className="modal-image"
               style={{ width: '300px' }}
             />
-            <button className="modal-arrow right" onClick={nextImage}>
-              ›
-            </button>
+            <button className="modal-arrow right" onClick={nextImage}>›</button>
             <button
               className="modal-close-unique"
               onClick={closeModal}
