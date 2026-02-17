@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/vn-hair-studio/static/css/main.5215d092.css",
+    "main.css": "/vn-hair-studio/static/css/main.e3279b11.css",
     "main.js": "/vn-hair-studio/static/js/main.b12cbb8a.js",
     "static/js/453.7472ce0e.chunk.js": "/vn-hair-studio/static/js/453.7472ce0e.chunk.js",
     "static/media/3.jpeg": "/vn-hair-studio/static/media/3.b9a64c06140a2b83fb81.jpeg",
@@ -15,6 +15,7 @@
     "static/media/photo_2024-11-26 00.15.42.jpeg": "/vn-hair-studio/static/media/photo_2024-11-26 00.15.42.0b8c7277d7ef5276b7f8.jpeg",
     "static/media/2.jpeg": "/vn-hair-studio/static/media/2.9165a92d07cd70f13421.jpeg",
     "static/media/4.jpeg": "/vn-hair-studio/static/media/4.77ff2aa20b5ed59e6d11.jpeg",
+    "static/media/nabla-v17-latin-regular.woff2": "/vn-hair-studio/static/media/nabla-v17-latin-regular.e24733e6b8b3292aa5f0.woff2",
     "static/media/5.jpeg": "/vn-hair-studio/static/media/5.31ad5967e7fe9e821ccf.jpeg",
     "static/media/photo_2024-11-26 00.15.43.jpeg": "/vn-hair-studio/static/media/photo_2024-11-26 00.15.43.c00f374d699c56764ab2.jpeg",
     "static/media/photo_2025-11-01 12.05.37.jpeg": "/vn-hair-studio/static/media/photo_2025-11-01 12.05.37.52491d8dfafeb1739fee.jpeg",
@@ -28,17 +29,18 @@
     "static/media/photo_2025-11-01 12.05.46.jpeg": "/vn-hair-studio/static/media/photo_2025-11-01 12.05.46.695bfc0033d9e89e0590.jpeg",
     "static/media/cz.png": "/vn-hair-studio/static/media/cz.c6ead1aa124dd2095a5c.png",
     "static/media/arrow.png": "/vn-hair-studio/static/media/arrow.f433ab0c7605357522e1.png",
+    "static/media/nunito-v32-latin-regular.woff2": "/vn-hair-studio/static/media/nunito-v32-latin-regular.1426bd429b6b372852b9.woff2",
     "static/media/ua.png": "/vn-hair-studio/static/media/ua.4980fa991424d2079663.png",
     "static/media/instagram.svg": "/vn-hair-studio/static/media/instagram.5154914378b0a587a5e2.svg",
     "static/media/phone.svg": "/vn-hair-studio/static/media/phone.714b728c9d1cd613662e.svg",
     "index.html": "/vn-hair-studio/index.html",
     "static/media/telegram.svg": "/vn-hair-studio/static/media/telegram.adc059719f9a09832c06.svg",
-    "main.5215d092.css.map": "/vn-hair-studio/static/css/main.5215d092.css.map",
+    "main.e3279b11.css.map": "/vn-hair-studio/static/css/main.e3279b11.css.map",
     "main.b12cbb8a.js.map": "/vn-hair-studio/static/js/main.b12cbb8a.js.map",
     "453.7472ce0e.chunk.js.map": "/vn-hair-studio/static/js/453.7472ce0e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5215d092.css",
+    "static/css/main.e3279b11.css",
     "static/js/main.b12cbb8a.js"
   ]
 }
