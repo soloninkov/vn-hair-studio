@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/vn-hair-studio/static/css/main.942655d4.css",
-    "main.js": "/vn-hair-studio/static/js/main.6f06a46d.js",
+    "main.css": "/vn-hair-studio/static/css/main.ba0029ea.css",
+    "main.js": "/vn-hair-studio/static/js/main.b0e76547.js",
     "static/js/453.7472ce0e.chunk.js": "/vn-hair-studio/static/js/453.7472ce0e.chunk.js",
     "static/media/3.jpeg": "/vn-hair-studio/static/media/3.b9a64c06140a2b83fb81.jpeg",
     "static/media/photo_2024-11-26 00.15.50.jpeg": "/vn-hair-studio/static/media/photo_2024-11-26 00.15.50.e49d755c8f285b9a01ad.jpeg",
@@ -15,7 +15,6 @@
     "static/media/photo_2024-11-26 00.15.42.jpeg": "/vn-hair-studio/static/media/photo_2024-11-26 00.15.42.0b8c7277d7ef5276b7f8.jpeg",
     "static/media/2.jpeg": "/vn-hair-studio/static/media/2.9165a92d07cd70f13421.jpeg",
     "static/media/4.jpeg": "/vn-hair-studio/static/media/4.77ff2aa20b5ed59e6d11.jpeg",
-    "static/media/nabla-v17-latin-regular.woff2": "/vn-hair-studio/static/media/nabla-v17-latin-regular.e24733e6b8b3292aa5f0.woff2",
     "static/media/5.jpeg": "/vn-hair-studio/static/media/5.31ad5967e7fe9e821ccf.jpeg",
     "static/media/photo_2024-11-26 00.15.43.jpeg": "/vn-hair-studio/static/media/photo_2024-11-26 00.15.43.c00f374d699c56764ab2.jpeg",
     "static/media/photo_2025-11-01 12.05.37.jpeg": "/vn-hair-studio/static/media/photo_2025-11-01 12.05.37.52491d8dfafeb1739fee.jpeg",
@@ -36,12 +35,12 @@
     "static/media/phone.svg": "/vn-hair-studio/static/media/phone.714b728c9d1cd613662e.svg",
     "index.html": "/vn-hair-studio/index.html",
     "static/media/telegram.svg": "/vn-hair-studio/static/media/telegram.adc059719f9a09832c06.svg",
-    "main.942655d4.css.map": "/vn-hair-studio/static/css/main.942655d4.css.map",
-    "main.6f06a46d.js.map": "/vn-hair-studio/static/js/main.6f06a46d.js.map",
+    "main.ba0029ea.css.map": "/vn-hair-studio/static/css/main.ba0029ea.css.map",
+    "main.b0e76547.js.map": "/vn-hair-studio/static/js/main.b0e76547.js.map",
     "453.7472ce0e.chunk.js.map": "/vn-hair-studio/static/js/453.7472ce0e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.942655d4.css",
-    "static/js/main.6f06a46d.js"
+    "static/css/main.ba0029ea.css",
+    "static/js/main.b0e76547.js"
   ]
 }
