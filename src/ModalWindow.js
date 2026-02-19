@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback, useEffect } from 'react';
 import './ModalWindow.css';
 
@@ -15,9 +14,13 @@ const ModalWindow = ({ show, onClose, children }) => {
     if (show) {
       setIsVisible(true);
       document.addEventListener('keydown', handleKeyDown);
+      // Блокуємо скрол на тілі при відкритті модалки
+      document.body.style.overflow = 'hidden';
     } else {
-      const timer = setTimeout(() => setIsVisible(false), 800);
+      const timer = setTimeout(() => setIsVisible(false), 300); // Зменшив до 300ms
       document.removeEventListener('keydown', handleKeyDown);
+      // Розблоковуємо скрол
+      document.body.style.overflow = 'auto';
       return () => clearTimeout(timer);
     }
   }, [show, handleKeyDown]);
@@ -25,8 +28,14 @@ const ModalWindow = ({ show, onClose, children }) => {
   useEffect(() => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'auto'; // На всяк випадок
     };
   }, [handleKeyDown]);
+
+  // Якщо модалка не показується і не видима - не рендеримо DOM
+  if (!show && !isVisible) {
+    return null;
+  }
 
   return (
     <div
@@ -34,7 +43,6 @@ const ModalWindow = ({ show, onClose, children }) => {
       style={{ display: isVisible ? 'flex' : 'none' }}
       onClick={onClose}
     >
-      <div >
       <div
         className="modal-content"
         onClick={(e) => e.stopPropagation()}
@@ -43,12 +51,15 @@ const ModalWindow = ({ show, onClose, children }) => {
           onClick={onClose}
           className="modal-close-button"
           aria-label="Close modal"
-        ></button>
+        >
+          ×
+        </button>
         {children}
-        <div className="buttons-grid" >  
+        <div className="buttons-grid">
           <a
             href="https://t.me/ivanivna15"
             target="_blank"
+            rel="noopener noreferrer"
             className="social-button--1"
           >
             <span className="social telegram" /> Telegram
@@ -56,13 +67,15 @@ const ModalWindow = ({ show, onClose, children }) => {
           <a
             href="https://www.instagram.com/_niknk?igsh=ZjJ6MGd1MmV4M21n"
             target="_blank"
+            rel="noopener noreferrer"
             className="social-button--2"
           >
             <span className="social instagram" /> Instagram
           </a>
-         
           <a
-            href="https://www.facebook.com/nik.nk.98"target="_blank"
+            href="https://www.facebook.com/nik.nk.98"
+            target="_blank"
+            rel="noopener noreferrer"
             className="social-button--1"
           >
             <span className="social facebook" /> Facebook
@@ -73,7 +86,6 @@ const ModalWindow = ({ show, onClose, children }) => {
           >
             <span className="social phone" /> +420774396964
           </a>
-        </div>
         </div>
       </div>
     </div>

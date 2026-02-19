@@ -1,6 +1,32 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nabla:EDPT,EHLT@30..200,24&display=swap");
+@font-face {
+  font-family: "Geist";
+  src: url("/public/fonts/geist-v4-latin-regular.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url("/public/fonts/nunito-v32-latin-regular.woff2") format("woff2");
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Nabla";
+  src: url("/public/fonts/nabla-v17-latin-regular.woff2") format("woff2");
+  font-display: swap;
+}
 
+/* ДОДАНО: базові стилі для швидкого старту */
+:root {
+  --main-background: #ffffff;
+  --main-text-color: #000000;
+  --menu-bg: #eeebff;
+  --menu-text: #000000;
+}
+
+/* ВСІ ОРИГІНАЛЬНІ СТИЛІ НЕЗМІННІ */
 html[data-theme="light"] {
   --main-background: #ffffff;
   --header-background: #ffffff;
@@ -58,20 +84,17 @@ body {
   margin-bottom: 0;
   margin: 0;
   padding: 0;
+  height: 100vh;
   overflow-x: hidden;
-  font-family: "Nunito";
+  font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: var(--main-background);
   color: var(--main-text-color);
 }
-html {
-  overflow-x: hidden;
-}
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: "Geist", monospace;
 }
 [class*="__container"] {
   max-width: 78.75rem;
@@ -96,6 +119,7 @@ header {
   background: var(--main-background);
 }
 header a {
+  font-family: "Geist", sans-serif;
   font-size: 18px;
   font-weight: 500;
   margin-right: 3%;
@@ -125,9 +149,12 @@ header a:hover {
   width: 100%;
   flex-wrap: wrap;
   align-items: center;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 .menu a {
+  font-family: "Geist", sans-serif;
   text-align: center;
   font-size: 18px;
   font-weight: 500;
@@ -148,10 +175,11 @@ header a:hover {
   position: relative;
   height: clamp(2.5rem, 2.011rem + 2.11vw, 3.438rem);
   width: clamp(5.625rem, 3.345rem + 9.86vw, 10rem);
-  border-radius: clamp(0.6rem, 1rem + 0.5vw, 1.7rem);
-  background: transparent; /* 🔥 прозорий фон */
+
+  background: transparent;
   border: 1px solid rgb(146, 148, 248);
   color: #4824ff;
+  font-family: "Geist", sans-serif;
   font-weight: 500;
   font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
   transition: all 0.4s ease;
@@ -215,14 +243,16 @@ header a:hover {
 .switch {
   width: clamp(4.375rem, 3.544rem + 3.6vw, 6.375rem);
   height: clamp(2.5rem, 2.11rem + 1.69vw, 3.438rem);
-  border-radius: clamp(0.6rem, 1rem + 0.5vw, 1.7rem);
-  background: transparent; /* 🔥 прозорий фон */
+  border-radius: clamp(0.6rem, 0.8rem + 0.5vw, 1.7rem);
+  background: transparent;
   border: 1px solid rgb(146, 148, 248);
   box-shadow: 0 0 10px rgba(146, 148, 248, 0.3);
   cursor: pointer;
   position: relative;
   overflow: hidden;
   transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
 }
 
 .switch:hover {
@@ -292,7 +322,9 @@ header a:hover {
   background-repeat: no-repeat;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 .ua:hover,
 .cz:hover {
@@ -340,6 +372,7 @@ header a:hover {
     padding: 10px 14px;
     margin: 6px 0;
     border-radius: 12px;
+    font-family: "Geist", sans-serif;
     font-weight: 600;
     font-size: 0.9rem;
     text-decoration: none;
@@ -347,10 +380,12 @@ header a:hover {
     background: var(--menu-button-bg);
     border: 1px solid var(--menu-button-border);
     transition: all 0.25s ease;
-    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.15),
+    box-shadow:
+      inset 2px 2px 5px rgba(0, 0, 0, 0.15),
       inset -2px -2px 5px rgba(255, 255, 255, 0.4);
     /* 🪶 ефект гравіювання тексту */
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4),
+    text-shadow:
+      1px 1px 2px rgba(255, 255, 255, 0.4),
       -1px -1px 2px rgba(0, 0, 0, 0.25);
   }
 
@@ -371,14 +406,16 @@ header a:hover {
     background: var(--elements-color) url(/public/icon/menu.png) no-repeat
       center;
     background-size: 60%;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2),
+    box-shadow:
+      2px 2px 6px rgba(0, 0, 0, 0.2),
       -2px -2px 6px rgba(255, 255, 255, 0.1);
     cursor: pointer;
     transition: all 0.3s ease;
   }
 
   .burger-menu:hover {
-    box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.15),
+    box-shadow:
+      inset 1px 1px 4px rgba(0, 0, 0, 0.15),
       inset -1px -1px 4px rgba(255, 255, 255, 0.1);
   }
 
@@ -416,17 +453,21 @@ header a:hover {
 }
 
 .welcome-block h1 {
+  font-family: "Geist", sans-serif;
   font-size: clamp(1.875rem, 1.375rem + 2.5vw, 3.25rem);
 }
 .welcome-block h2 {
+  font-family: "Nunito", sans-serif;
   font-size: clamp(1.5rem, 1.091rem + 2.05vw, 2.625rem);
   font-weight: 450;
 }
 .welcome-block h3 {
+  font-family: "Nunito", sans-serif;
   font-size: clamp(1.25rem, 0.932rem + 1.59vw, 2.125rem);
   font-weight: 300;
 }
 .title {
+  font-family: "Nabla", cursive;
   background: linear-gradient(
     to right,
     #4824ff,
@@ -562,16 +603,19 @@ header a:hover {
 /* __________________________________ */
 /* === КНОПКА "КОНТАКТУВАТИ" — як у портфоліо, але без синього фону === */
 .btn {
+  height: clamp(2.6rem, 2.11rem + 1.69vw, 3.438rem);
   text-decoration: none;
   border: 1px solid rgb(146, 148, 248);
-  border-radius: 24px;
+  border-radius: clamp(0.6rem, 0.8rem + 0.5vw, 1.7rem);
+
   position: relative;
   overflow: hidden;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem 2.5rem;
-  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+  padding: 1rem 3rem;
+  font-family: "Geist", sans-serif;
+  font-size: clamp(1rem, 0.7rem + 0.5vw, 1.25rem);
   color: var(--elements-text-color);
   background: inherit;
   cursor: pointer;
@@ -582,21 +626,27 @@ header a:hover {
 html[data-theme="light"] .btn {
   color: #4824ff;
   background: #eeebff;
-  box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff;
+  box-shadow:
+    4px 4px 8px #a3b1c6,
+    -4px -4px 8px #ffffff;
 }
 
 /* Темна тема */
 html[data-theme="dark"] .btn {
   color: #ffffff;
   background: #0f0f1a;
-  box-shadow: 5px 5px 10px #050509, -5px -5px 10px #1c1c27;
+  box-shadow:
+    5px 5px 10px #050509,
+    -5px -5px 10px #1c1c27;
 }
 
 /* Hover — тільки світіння, без кольору */
 .btn:hover {
   background: inherit;
   color: var(--elements-text-color);
-  box-shadow: 0 0 15px rgba(72, 36, 255, 0.6), 0 0 30px rgba(146, 148, 248, 0.3);
+  box-shadow:
+    0 0 15px rgba(72, 36, 255, 0.6),
+    0 0 30px rgba(146, 148, 248, 0.3);
   animation: glowPulse 1.6s infinite alternate ease-in-out;
   transform: translateY(-2px);
 }
@@ -604,11 +654,13 @@ html[data-theme="dark"] .btn {
 /* Плавне пульсування світла */
 @keyframes glowPulse {
   0% {
-    box-shadow: 0 0 10px rgba(72, 36, 255, 0.4),
+    box-shadow:
+      0 0 10px rgba(72, 36, 255, 0.4),
       0 0 20px rgba(146, 148, 248, 0.2);
   }
   100% {
-    box-shadow: 0 0 25px rgba(72, 36, 255, 0.8),
+    box-shadow:
+      0 0 25px rgba(72, 36, 255, 0.8),
       0 0 45px rgba(146, 148, 248, 0.5);
   }
 }
@@ -642,6 +694,7 @@ html[data-theme="dark"] .btn {
 }
 
 .service-title {
+  font-family: "Nabla", cursive;
   background: linear-gradient(
     to right,
     #4824ff,
@@ -696,6 +749,7 @@ html[data-theme="dark"] .btn {
   border-radius: 1.5rem;
   width: 90%;
   max-width: 400px;
+  font-family: "Nunito", sans-serif;
   font-size: clamp(1rem, 0.9rem + 0.4vw, 1.3rem);
   font-weight: 600;
   border: none;
@@ -708,7 +762,9 @@ html[data-theme="dark"] .btn {
 html[data-theme="light"] .tag-i {
   background: #e0e5ec;
   color: #3b3b58;
-  box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff;
+  box-shadow:
+    6px 6px 12px #a3b1c6,
+    -6px -6px 12px #ffffff;
   border: 1px solid rgba(146, 148, 248, 0.3);
 }
 
@@ -717,7 +773,9 @@ html[data-theme="dark"] .tag-i {
   background: #0e0e18;
   color: #eeebff;
   border: 1px solid rgba(146, 148, 248, 0.2);
-  box-shadow: 4px 4px 10px #050509, -4px -4px 10px #1c1c27;
+  box-shadow:
+    4px 4px 10px #050509,
+    -4px -4px 10px #1c1c27;
 }
 
 /* Іконки */
@@ -749,6 +807,7 @@ html[data-theme="dark"] .tag-i {
   justify-content: center;
   align-items: center;
   padding: 1rem 3rem;
+  font-family: "Geist", sans-serif;
   font-size: 1.5rem;
 
   cursor: pointer;
@@ -808,6 +867,7 @@ html[data-theme="dark"] .tag-i {
 }
 
 .title-portfolio {
+  font-family: "Nabla", cursive;
   font-size: clamp(2.5rem, 1.136rem + 6.82vw, 6.25rem);
   margin-bottom: clamp(0.938rem, 0.618rem + 1.6vw, 1.875rem);
   background: linear-gradient(
@@ -848,6 +908,7 @@ html[data-theme="dark"] .tag-i {
   justify-content: center;
   align-items: center;
   padding: 1rem 1.5rem;
+  font-family: "Geist", sans-serif;
   font-size: clamp(1rem, 0.9rem + 0.5vw, 1.3rem);
   color: #4824ff;
   text-transform: uppercase;
@@ -1014,6 +1075,7 @@ html[data-theme="dark"] .tag-i {
 /* ________________________ */
 /* === ЗАГОЛОВОК "CENY" === */
 .title-price {
+  font-family: "Nabla", cursive;
   background: linear-gradient(
     to right,
     #4824ff,
@@ -1115,6 +1177,7 @@ html[data-theme="dark"] .tag-i {
   align-items: center;
   padding: 14px 18px;
   border-radius: 18px;
+  font-family: "Nunito", sans-serif;
   font-weight: 600;
   letter-spacing: 0.3px;
   transition: all 0.3s ease;
@@ -1126,7 +1189,9 @@ html[data-theme="light"] .tag-price {
   background: #e0e5ec;
   border: 1px solid rgba(146, 148, 248, 0.25);
   color: #3b3b58;
-  box-shadow: 3px 3px 6px #a3b1c6, -3px -3px 6px #ffffff;
+  box-shadow:
+    3px 3px 6px #a3b1c6,
+    -3px -3px 6px #ffffff;
 }
 
 /* 🌙 ТЕМНА ТЕМА */
@@ -1134,7 +1199,9 @@ html[data-theme="dark"] .tag-price {
   background: #0f0f1a;
   border: 1px solid rgba(146, 148, 248, 0.2);
   color: #eeebff;
-  box-shadow: 2px 2px 5px #050509, -2px -2px 5px #1c1c27;
+  box-shadow:
+    2px 2px 5px #050509,
+    -2px -2px 5px #1c1c27;
 }
 
 /* Hover ефект */
@@ -1279,7 +1346,7 @@ html[data-theme="dark"] .tag-price {
     grid-template-columns: 1fr;
     width: 90%;
     justify-items: center;
-    gap: 10px;
+    gap: 1px;
   }
 
   .tag-price {
@@ -1296,11 +1363,16 @@ html[data-theme="dark"] .tag-price {
 }
 
 /* ______________________ */
+.map__container {
+  padding-bottom: 100px;
+}
 .title-map {
+  font-family: "Geist", sans-serif;
   font-size: 30px;
 }
 
 .map-span {
+  font-family: "Nabla", cursive;
   font-size: 45px;
 
   background: linear-gradient(
@@ -1399,11 +1471,36 @@ html[data-theme="dark"] .tag-price {
 
 /* ______________________________________ блок учоби*/
 
+/* ------------------------------
+   СЕКЦІЯ "Я навчаю"
+------------------------------ */
+
 .teach__container {
-  padding-bottom: 50px;
+  padding-bottom: 100px;
+  text-align: left;
 }
 
+/* Анімований текст "навчаю" */
+/* ------------------------------
+   СЕКЦІЯ "Я навчаю"
+------------------------------ */
+
+.teach__container {
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+/* щоб h4 не був по центру ніде, в т.ч. на мобілці */
+.teach__container h4 {
+  text-align: left;
+  width: 100%;
+  margin: 0 0 20px 0;
+  padding-left: 10px;
+}
+
+/* Анімований текст "навчаю" */
 .teach {
+  font-family: "Nabla", cursive;
   font-size: 50px;
   background: linear-gradient(
     to right,
@@ -1418,105 +1515,204 @@ html[data-theme="dark"] .tag-price {
   background-clip: text;
   color: transparent;
   background-size: 200%;
+  display: inline-block;
   animation: gradientAnimation 5s linear infinite;
 }
 
-.card-container {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: stretch;
-  gap: 10px;
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
 }
 
+/* Контейнер карток */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 26px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* БАЗОВИЙ СТИЛЬ КАРТКИ */
 .card {
   position: relative;
+  flex: 1 1 320px;
+  max-width: 360px;
+
+  padding: 26px 30px;
+  border-radius: 26px;
+
+  background: var(--teach-card-bg);
+  border: 1px solid var(--teach-card-border);
+  box-shadow: var(--teach-card-shadow);
+
+  backdrop-filter: blur(22px);
+  color: var(--teach-card-text);
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: calc(33.33% - 40px);
-  margin: 10px;
-  padding: 1em;
-  color: #fff;
-  transform: rotateY(30deg) rotateX(15deg);
-  transform-style: preserve-3d;
-  transition: transform 1s;
-  min-height: 100%;
+
+  text-align: left;
 }
 
-.card:hover {
-  transform: rotateY(0deg) rotateX(0deg);
+/* ------------------------------
+   ТЕМИ
+------------------------------ */
+html[data-theme="dark"] .teach__container {
+  --teach-card-bg: rgba(11, 13, 30, 0.88);
+  --teach-card-border: rgba(146, 148, 248, 0.7);
+  --teach-card-shadow:
+    0 0 0 1px rgba(146, 148, 248, 0.25), 0 22px 55px rgba(0, 0, 0, 0.85);
+  --teach-card-text: #f3f4ff;
 }
 
-.price__teach {
-  font-size: 40px;
-  margin-top: auto;
+html[data-theme="light"] .teach__container {
+  --teach-card-bg: rgba(248, 250, 255, 0.9);
+  --teach-card-border: rgba(146, 148, 248, 0.7);
+  --teach-card-shadow:
+    0 0 0 1px rgba(146, 148, 248, 0.2), 0 18px 40px rgba(150, 170, 255, 0.35);
+  --teach-card-text: #111827;
 }
 
-.layers {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  z-index: -1;
+/* Глоу для кожної картки */
+.card--barber {
+  box-shadow:
+    0 0 12px rgba(0, 213, 255, 0.45),
+    var(--teach-card-shadow);
 }
 
-.layer {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 1em;
-  background-image: var(--bi);
-  transform: translateZ(var(--tz));
-  box-shadow: 0 0 0.5em #000d inset;
+.card--female {
+  box-shadow:
+    0 0 12px rgba(255, 105, 180, 0.4),
+    var(--teach-card-shadow);
 }
 
-.layer:last-child {
-  box-shadow: 0 0 0.5em #000d inset, 0 0 5px #000;
+/* м’який червоний */
+.card--combo {
+  border-color: rgba(255, 90, 90, 0.45);
+  box-shadow:
+    0 0 10px rgba(255, 90, 90, 0.28),
+    var(--teach-card-shadow);
 }
 
-/* Заголовки з emoji — без flex */
+/* Заголовок картки */
 .point__title {
-  font-size: 25px;
-  margin-bottom: 10px;
+  font-family: "Geist", sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: var(--teach-card-text);
+  text-align: left;
+}
+
+/* Список */
+.guarantees-points {
+  padding: 0;
+  margin: 0;
+  margin-left: 16px; /* трохи вправо від заголовка */
 }
 
 .point {
-  font-size: 18px;
-  margin-bottom: 10px;
   display: flex;
-  align-items: flex-start; /* ВИРІВНЮЄ emoji по верхній частині */
-  gap: 8px;
-  line-height: 1.4; /* Трохи збільшимо для читабельності */
+  gap: 10px;
+  font-family: "Nunito", sans-serif;
+  font-size: 18px;
+  margin-bottom: 12px;
+  line-height: 1.45;
+  color: var(--teach-card-text);
 }
 
 .icon {
-  font-size: 20px;
+  font-size: 21px;
   min-width: 24px;
   text-align: center;
-  color: #85aeff;
-  line-height: 1.2;
-  padding-top: 2px; /* трохи опустити emoji, щоб виглядало більш природно */
+  line-height: 1.3;
 }
 
-/* Адаптив */
-@media (max-width: 1100px) {
-  .card-container {
-    flex-wrap: wrap;
+/* Ціна — завжди внизу */
+.price__teach {
+  font-family: "Geist", sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  margin-top: auto;
+  padding-top: 20px;
+  color: var(--teach-card-text);
+  text-align: left;
+}
+
+/* ------------------------------
+   АДАПТИВ
+------------------------------ */
+
+/* планшет/малий ноут */
+@media (max-width: 900px) {
+  .teach__container {
+    padding-bottom: 40px;
+  }
+
+  .card {
+    flex: 1 1 calc(50% - 20px);
+    max-width: 100%;
   }
 }
+
+/* телефони */
 @media (max-width: 768px) {
+  .teach__container {
+    padding-top: 10px; /* менший відступ зверху */
+  }
+
+  .card-container {
+    gap: 18px;
+  }
+
   .card {
-    width: calc(50% - 40px);
+    flex: 1 1 100%;
+    max-width: 100%; /* 🔥 розтягуємо на всю ширину */
+    padding: 20px 18px; /* менше внутрішніх відступів */
+  }
+
+  .guarantees-points {
+    margin-left: 12px; /* трошки менше відступ вправо */
+  }
+
+  .point__title,
+  .price__teach {
+    text-align: left;
   }
 }
+
+/* дуже маленькі телефони */
 @media (max-width: 480px) {
+  .teach__container h4 {
+    padding-left: 6px;
+  }
+
   .card {
-    width: calc(100% - 40px);
+    padding: 18px 14px 20px;
+    border-radius: 22px;
+  }
+
+  .point {
+    font-size: 16px;
+  }
+
+  .price__teach {
+    font-size: 26px;
+    text-align: center;
+    width: 100%;
+    margin-left: 0;
+  }
+  .point__title {
+    text-align: center;
+    width: 100%;
+    margin-left: 0;
   }
 }
 
@@ -1524,6 +1720,7 @@ html[data-theme="dark"] .tag-price {
 .footer {
   height: 80px;
   text-align: center;
+  font-family: "Geist", sans-serif;
   font-size: 18px;
   border-top: 1px solid #2308aa;
   margin-left: -5vw;
@@ -1564,4 +1761,356 @@ html[data-theme="dark"] .tag-price {
   background-size: 100%;
   background-image: url(/public/icon/arrow.png);
 }
-/* ________ */
+
+.online-course-section {
+  padding: 60px 0 80px;
+}
+
+.online-course-section__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.online-course-section__title {
+  font-family: "Geist", sans-serif;
+  font-size: clamp(32px, 4.5vw, 56px);
+  margin-bottom: 24px;
+  line-height: 1.1;
+  font-weight: 900;
+  text-align: left;
+}
+
+/* Теми для заголовка */
+html[data-theme="dark"] .online-course-section__title {
+  color: #ffffff;
+}
+html[data-theme="light"] .online-course-section__title {
+  color: #111111;
+}
+.online-course__card-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+html[data-theme="dark"] .online-course-section {
+  --oc-card-bg: rgba(11, 13, 30, 0.88);
+  --oc-card-border: rgba(146, 148, 248, 0.7);
+  --oc-card-shadow:
+    0 0 0 1px rgba(146, 148, 248, 0.2), 0 22px 55px rgba(0, 0, 0, 0.9);
+  --oc-card-text: #f3f4ff;
+}
+
+html[data-theme="light"] .online-course-section {
+  --oc-card-bg: rgba(248, 250, 255, 0.9);
+  --oc-card-border: rgba(146, 148, 248, 0.7);
+  --oc-card-shadow:
+    0 0 0 1px rgba(146, 148, 248, 0.2), 0 18px 40px rgba(150, 170, 255, 0.35);
+  --oc-card-text: #111827;
+}
+
+.card--online {
+  max-width: 420px;
+  width: 100%;
+  padding: 26px;
+  border-radius: 26px;
+  background: var(--oc-card-bg);
+  border: 1px solid var(--oc-card-border);
+  box-shadow: var(--oc-card-shadow);
+  backdrop-filter: blur(18px);
+  color: var(--oc-card-text);
+  display: flex;
+  flex-direction: column;
+}
+
+.card--online .point__title {
+  font-family: "Geist", sans-serif;
+  font-size: 24px;
+  margin-bottom: 14px;
+}
+
+.online-course__subtitle {
+  font-family: "Nunito", sans-serif;
+  margin-bottom: 14px;
+  font-size: 15px;
+}
+
+.card--online .guarantees-points {
+  margin-left: 12px;
+}
+
+/* Ціна */
+.card--online .price__teach {
+  font-family: "Geist", sans-serif;
+  margin-top: auto;
+  padding-top: 16px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* Кнопки */
+.online-course__buttons {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.course-btn-buy,
+.course-btn-login {
+  width: clamp(200px, 60%, 260px);
+}
+
+/* BACKDROP */
+.course-login__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+/* КАРТКА */
+.course-login-card {
+  position: relative;
+  width: min(360px, 90%);
+  border-radius: 28px;
+  padding: 32px 26px 24px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  background: var(--login-card-bg);
+  box-shadow: var(--login-card-shadow-main);
+  color: var(--login-card-text);
+}
+
+/* ТЕМИ */
+html[data-theme="light"] .course-login-card {
+  --login-card-bg: #e8edf8;
+  --login-card-shadow-main:
+    12px 12px 30px rgba(181, 189, 204, 0.8),
+    -12px -12px 30px rgba(255, 255, 255, 1);
+  --login-card-text: #1f2933;
+  --login-input-bg: #e8edf8;
+  --login-input-shadow:
+    inset 4px 4px 9px rgba(181, 189, 204, 0.9),
+    inset -4px -4px 9px rgba(255, 255, 255, 0.9);
+  --login-submit-bg: #e8edf8;
+  --login-submit-shadow:
+    8px 8px 18px rgba(181, 189, 204, 0.85),
+    -8px -8px 18px rgba(255, 255, 255, 1);
+}
+
+html[data-theme="dark"] .course-login-card {
+  --login-card-bg: #0c1120;
+  --login-card-shadow-main:
+    12px 12px 30px rgba(0, 0, 0, 0.9), -12px -12px 30px rgba(40, 50, 90, 0.9);
+  --login-card-text: #e5e9f5;
+  --login-input-bg: #0c1120;
+  --login-input-shadow:
+    inset 4px 4px 9px rgba(0, 0, 0, 0.95),
+    inset -4px -4px 9px rgba(45, 60, 110, 0.6);
+  --login-submit-bg: #0c1120;
+  --login-submit-shadow:
+    8px 8px 18px rgba(0, 0, 0, 0.9), -8px -8px 18px rgba(45, 60, 110, 0.9);
+}
+
+/* ХРЕСТИК */
+.course-login-card__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: #e0e5ec;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  box-shadow:
+    5px 5px 10px #a3b1c6,
+    -5px -5px 10px #ffffff;
+  transition: all 0.3s ease;
+}
+.course-login-card__close:hover {
+  box-shadow:
+    inset 3px 3px 6px #a3b1c6,
+    inset -3px -3px 6px #ffffff;
+}
+
+.course-login-card__close::before,
+.course-login-card__close::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 18px;
+  height: 2px;
+  background-color: #606060;
+  transition: all 0.3s ease;
+}
+
+.course-login-card__close::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.course-login-card__close::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+html[data-theme="dark"] .course-login-card__close {
+  background: rgba(15, 23, 42, 0.8);
+  border-color: rgba(148, 163, 255, 0.7);
+  color: #e5e9f5;
+}
+
+/* АВАТАР */
+.course-login-card__avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--login-input-bg);
+  box-shadow:
+    8px 8px 18px rgba(0, 0, 0, 0.08),
+    -8px -8px 18px rgba(255, 255, 255, 0.9);
+}
+
+html[data-theme="dark"] .course-login-card__avatar {
+  box-shadow:
+    8px 8px 18px rgba(0, 0, 0, 0.9),
+    -8px -8px 18px rgba(45, 60, 110, 0.9);
+}
+
+.course-login-card__avatar-icon {
+  font-size: 26px;
+}
+
+/* ТЕКСТИ */
+.course-login-card__title {
+  font-family: "Geist", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.course-login-card__subtitle {
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* ФОРМА */
+/* ФОРМА — ТЕПЕР ПІГУЛКИ ВУЖЧІ З ОДНАКОВИМ ВІДСТУПОМ ЗЛІВА/СПРАВА */
+.course-login-card__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 12px;
+
+  /* центруємо вміст всередині картки */
+  align-items: center;
+}
+
+/* ПОЛЯ */
+.course-login-card__field {
+  position: relative;
+  /* 🔥 ширина менша за картку: по ~20px з кожного боку */
+  width: calc(100% - 40px);
+
+  display: flex;
+  align-items: center;
+
+  padding: 10px 18px;
+  border-radius: 16px;
+  background: var(--login-input-bg);
+  box-shadow: var(--login-input-shadow);
+}
+
+/* Іконки */
+.course-login-card__field-icon {
+  font-size: 16px;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+/* зліва */
+.course-login-card__field-icon:first-child {
+  margin-right: 8px;
+}
+
+/* справа (око) */
+.course-login-card__field-icon--right {
+  margin-left: 8px;
+}
+
+/* INPUT */
+.course-login-card__input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  width: 100%;
+  color: inherit;
+}
+
+.course-login-card__input::placeholder {
+  opacity: 0.6;
+}
+
+/* КНОПКА SIGN IN — така ж ширина, як поля */
+.course-login-card__submit {
+  width: calc(100% - 40px); /* ті самі відступи, що й у полів */
+  margin-top: 8px;
+  padding: 12px 18px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  font-family: "Geist", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  background: var(--login-submit-bg);
+  box-shadow: var(--login-submit-shadow);
+  color: inherit;
+  transition: 0.2s ease;
+}
+
+.course-login-card__submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.course-login-card__submit:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+/* Адаптив */
+@media (max-width: 480px) {
+  .course-login-card {
+    width: 90%;
+    padding: 26px 18px 20px;
+    border-radius: 24px;
+  }
+
+  .course-login-card__form {
+    padding: 0 4px;
+  }
+
+  .course-login-card__title {
+    font-size: 20px;
+  }
+}

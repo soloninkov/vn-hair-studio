@@ -1,195 +1,19 @@
-/* .modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-  z-index: 1000;
-}
-
-.modal-backdrop.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-  background: linear-gradient(
-    90deg,
-    rgb(15, 127, 183) 20%,
-    rgba(193, 53, 132, 1) 100%
-  );
-  padding: 20px;
-  border-radius: 16px;
-  max-width: 100%;
-  max-height: 100%;
-  transform: translateY(-50px);
-  transition: transform 0.5s ease;
-  z-index: 1001;
-}
-
-.modal-backdrop.show .modal-content {
-  transform: translateY(0);
-}
-
-.modal-close-button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 0;
-  outline: none;
-}
-
-.modal-close-button::before,
-.modal-close-button::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 30px;
-  height: 2px;
-  background-color: #333;
-}
-
-.modal-close-button::before {
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.modal-close-button::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
-}
-
-.buttons-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  justify-content: center;
-  margin-top: 16px;
-}
-
-.social.telegram {
-  content: url(/public/icon/telegram.svg);
-  max-width: 60px;
-  scale: 0.6;
-  margin-right: 8px;
-}
-
-.social.instagram {
-  content: url(/public/icon/instagram.svg);
-  max-width: 60px;
-  scale: 0.6;
-  margin-right: 8px;
-}
-.social.facebook {
-  content: url(/public/icon/facebook.png);
-  max-width: 65px;
-  scale: 0.6;
-  margin-right: 8px;
-}
-
-.social.phone {
-  content: url(/public/icon/phone.svg);
-  max-width: 40px;
-  scale: 0.6;
-  margin-right: 8px;
-}
-
-.social-button--1,
-.social-button--2 {
-  align-items: center;
-  justify-content: center;
-  display: flex;
-  height: 55px;
-  width: 220px;
-  border-radius: 55px;
-  cursor: pointer;
-  transition: 0.3s;
-  color: white;
-  font-size: 18px;
-  text-decoration: none;
-}
-
-.social-button--1 {
-  background: #24a1de;
-}
-
-.social-button--2 {
-  background: #c13584;
-}
-
-.social-button--1:hover {
-  filter: drop-shadow(0px 0px 20px #044f74);
-  color: #eeebff;
-}
-
-.social-button--2:hover {
-  filter: drop-shadow(0px 0px 20px #940a58);
-  color: #eeebff;
-}
-
-@media (max-width: 769px) {
-  .modal-content {
-    width: 90%;
-    max-height: 90vh;
-    padding: 20px;
-    margin: auto;
-    overflow-y: auto;
-    text-align: center;
-  }
-
-  .buttons-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    width: 100%;
-  }
-
-  .social-button--1,
-  .social-button--2 {
-    width: 100%;
-    height: 50px;
-    font-size: 16px;
-  }
-
-  .social {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-  }
-} */
 .modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(224, 229, 236, 0.8); /* світлий злегка матовий фон */
+  background: rgba(224, 229, 236, 0.8);
   backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
   z-index: 1000;
 }
 
@@ -206,17 +30,25 @@
   justify-content: center;
   text-align: center;
   position: relative;
-  background: #e0e5ec; /* 🔹 світлий нейтральний фон */
+  background: #e0e5ec;
   border-radius: 24px;
   padding: 40px 30px;
-  box-shadow: 9px 9px 16px #a3b1c6, -9px -9px 16px #ffffff; /* 🔹 неоморфна тінь */
-  transform: translateY(-50px);
-  transition: transform 0.5s ease;
+  max-width: 500px;
+  width: 90%;
+  box-shadow:
+    9px 9px 16px #a3b1c6,
+    -9px -9px 16px #ffffff;
+  transform: translateY(-50px) scale(0.95);
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+  opacity: 0;
   z-index: 1001;
 }
 
 .modal-backdrop.show .modal-content {
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  opacity: 1;
 }
 
 /* === Кнопка закриття === */
@@ -230,32 +62,29 @@
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff;
+  box-shadow:
+    5px 5px 10px #a3b1c6,
+    -5px -5px 10px #ffffff;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #606060;
+  line-height: 1;
 }
 
 .modal-close-button:hover {
-  box-shadow: inset 3px 3px 6px #a3b1c6, inset -3px -3px 6px #ffffff;
+  box-shadow:
+    inset 3px 3px 6px #a3b1c6,
+    inset -3px -3px 6px #ffffff;
+  color: #000;
 }
 
+/* Видаляємо псевдоелементи, бо тепер використовуємо × */
 .modal-close-button::before,
 .modal-close-button::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 18px;
-  height: 2px;
-  background-color: #606060;
-  transition: all 0.3s ease;
-}
-
-.modal-close-button::before {
-  transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.modal-close-button::after {
-  transform: translate(-50%, -50%) rotate(-45deg);
+  display: none;
 }
 
 /* === Контент кнопок === */
@@ -264,10 +93,11 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   justify-content: center;
-  margin-top: 24px;
+  margin-top: 30px;
+  width: 100%;
 }
 
-/* Іконки соцмереж */
+/* Іконки соцмереж - ВИКОРИСТОВУЄМО CONTENT ЯК У ТЕБЕ БУЛО */
 .social {
   display: inline-flex;
   align-items: center;
@@ -277,17 +107,18 @@
   margin-right: 10px;
 }
 
+/* Оригінальні іконки як у тебе було */
 .social.telegram {
-  content: url(/public/icon/telegram.svg);
+  content: url("../public/icon/telegram.svg");
 }
 .social.instagram {
-  content: url(/public/icon/instagram.svg);
+  content: url("../public/icon/instagram.svg");
 }
 .social.facebook {
-  content: url(/public/icon/facebook.png);
+  content: url("../public/icon/facebook.png");
 }
 .social.phone {
-  content: url(/public/icon/phone.svg);
+  content: url("../public/icon/phone.svg");
 }
 
 /* === Кнопки соцмереж === */
@@ -297,7 +128,8 @@
   justify-content: center;
   display: flex;
   height: 55px;
-  width: 220px;
+  min-width: 200px;
+  padding: 0 20px;
   border-radius: 55px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -306,155 +138,267 @@
   font-weight: 500;
   text-decoration: none;
   background: #e0e5ec;
-  box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff;
+  box-shadow:
+    6px 6px 12px #a3b1c6,
+    -6px -6px 12px #ffffff;
+  border: none;
+  outline: none;
 }
 
 /* Ефект натискання */
 .social-button--1:active,
 .social-button--2:active {
-  box-shadow: inset 4px 4px 8px #a3b1c6, inset -4px -4px 8px #ffffff;
+  box-shadow:
+    inset 4px 4px 8px #a3b1c6,
+    inset -4px -4px 8px #ffffff;
+  transform: scale(0.98);
 }
 
 /* Hover-ефект */
 .social-button--1:hover,
 .social-button--2:hover {
   color: #000;
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow:
+    8px 8px 16px #a3b1c6,
+    -8px -8px 16px #ffffff;
 }
 
-/* === Мобільна адаптація === */
-@media (max-width: 769px) {
-  .modal-content {
-    width: 90%;
-    max-height: 90vh;
-    padding: 25px;
-    overflow-y: auto;
-    text-align: center;
-  }
-
-  .buttons-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    width: 100%;
-  }
-
-  .social-button--1,
-  .social-button--2 {
-    width: 100%;
-    height: 50px;
-    font-size: 16px;
-  }
-}
 /* === ТЕКСТ ЯК ВИРІЗАНИЙ В КАМЕНІ === */
 .modal-content h1,
 .modal-content h2,
 .modal-content h3,
 .modal-content p,
 .modal-content span,
-.modal-content a {
-  color: #3b3b58; /* темний нейтральний */
-  text-shadow: inset 1px 1px 2px #ffffff,
-    /* світло зверху */ inset -1px -1px 2px #a3b1c6; /* тінь знизу */
-}
-
-/* Якщо браузер не підтримує inset-тінь для тексту, робимо імітацію */
-.modal-content h1,
-.modal-content h2,
-.modal-content h3 {
+.modal-content a:not(.social-button--1):not(.social-button--2) {
   color: #3b3b58;
-  text-shadow: 1px 1px 2px #ffffff, -1px -1px 2px #a3b1c6;
+  text-shadow:
+    1px 1px 2px #ffffff,
+    -1px -1px 2px #a3b1c6;
+  transition: color 0.3s ease;
 }
 
-/* Підпис або опис — дрібніше, з більшою втопленістю */
-.modal-content p {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #4b4b66;
-  text-shadow: 1px 1px 1px #ffffff, -1px -1px 1px #a3b1c6;
-}
+/* Заголовки */
 .modal-content h2 {
   letter-spacing: 1px;
   font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 2rem;
 }
+
+/* Текст */
+.modal-content p {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #4b4b66;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
 /* === 🌙 ТЕМНА ТЕМА ДЛЯ МОДАЛКИ === */
-html[data-theme="dark"] .modal-backdrop {
+.theme-dark .modal-backdrop,
+[data-theme="dark"] .modal-backdrop {
   background: rgba(10, 10, 20, 0.85);
   backdrop-filter: blur(10px);
 }
 
-html[data-theme="dark"] .modal-content {
+.theme-dark .modal-content,
+[data-theme="dark"] .modal-content {
   background: #1b1b27;
-  box-shadow: 9px 9px 16px #0d0d13, -9px -9px 16px #2d2d3f;
+  box-shadow:
+    9px 9px 16px #0d0d13,
+    -9px -9px 16px #2d2d3f;
   color: #d4d4e0;
 }
 
-html[data-theme="dark"] .modal-close-button {
+.theme-dark .modal-close-button,
+[data-theme="dark"] .modal-close-button {
   background: #1b1b27;
-  box-shadow: 5px 5px 10px #0d0d13, -5px -5px 10px #2d2d3f;
+  box-shadow:
+    5px 5px 10px #0d0d13,
+    -5px -5px 10px #2d2d3f;
+  color: #c7c7d6;
 }
 
-html[data-theme="dark"] .modal-close-button:hover {
-  box-shadow: inset 3px 3px 6px #0d0d13, inset -3px -3px 6px #2d2d3f;
-}
-
-html[data-theme="dark"] .modal-close-button::before,
-html[data-theme="dark"] .modal-close-button::after {
-  background-color: #c7c7d6;
+.theme-dark .modal-close-button:hover,
+[data-theme="dark"] .modal-close-button:hover {
+  box-shadow:
+    inset 3px 3px 6px #0d0d13,
+    inset -3px -3px 6px #2d2d3f;
+  color: #fff;
 }
 
 /* === ТЕКСТ — ефект вирізаного світлом у темному камені === */
-html[data-theme="dark"] .modal-content h1,
-html[data-theme="dark"] .modal-content h2,
-html[data-theme="dark"] .modal-content h3,
-html[data-theme="dark"] .modal-content p,
-html[data-theme="dark"] .modal-content span,
-html[data-theme="dark"] .modal-content a {
+.theme-dark .modal-content h1,
+.theme-dark .modal-content h3,
+.theme-dark .modal-content span,
+.theme-dark .modal-content a:not(.social-button--1):not(.social-button--2),
+[data-theme="dark"] .modal-content h1,
+[data-theme="dark"] .modal-content h3,
+[data-theme="dark"] .modal-content span,
+[data-theme="dark"]
+  .modal-content
+  a:not(.social-button--1):not(.social-button--2) {
   color: #c7c7d6;
-  text-shadow: 1px 1px 2px #0d0d13, -1px -1px 2px #2d2d3f;
+  text-shadow:
+    1px 1px 2px #0d0d13,
+    -1px -1px 2px #2d2d3f;
+}
+
+/* ОКРЕМО для заголовка h2 (Kontaktovat) - БІЛИЙ */
+.theme-dark .modal-content h2,
+[data-theme="dark"] .modal-content h2 {
+  color: #ffffff !important;
+  text-shadow:
+    1px 1px 2px #0d0d13,
+    -1px -1px 2px #2d2d3f;
+}
+
+/* ОКРЕМО для параграфа p - світліший сірий */
+.theme-dark .modal-content p,
+[data-theme="dark"] .modal-content p {
+  color: #e0e0e0 !important;
+  text-shadow:
+    1px 1px 2px #0d0d13,
+    -1px -1px 2px #2d2d3f;
 }
 
 /* === КНОПКИ СОЦМЕРЕЖ === */
-html[data-theme="dark"] .social-button--1,
-html[data-theme="dark"] .social-button--2 {
+.theme-dark .social-button--1,
+.theme-dark .social-button--2,
+[data-theme="dark"] .social-button--1,
+[data-theme="dark"] .social-button--2 {
   background: #1b1b27;
   color: #c7c7d6;
-  box-shadow: 6px 6px 12px #0d0d13, -6px -6px 12px #2d2d3f;
+  box-shadow:
+    6px 6px 12px #0d0d13,
+    -6px -6px 12px #2d2d3f;
 }
 
-html[data-theme="dark"] .social-button--1:hover,
-html[data-theme="dark"] .social-button--2:hover {
+.theme-dark .social-button--1:hover,
+.theme-dark .social-button--2:hover,
+[data-theme="dark"] .social-button--1:hover,
+[data-theme="dark"] .social-button--2:hover {
   color: #fff;
-  transform: scale(1.05);
-  box-shadow: 0 0 12px rgba(72, 36, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow:
+    8px 8px 16px #0d0d13,
+    -8px -8px 16px #2d2d3f;
 }
 
-html[data-theme="dark"] .social-button--1:active,
-html[data-theme="dark"] .social-button--2:active {
-  box-shadow: inset 4px 4px 8px #0d0d13, inset -4px -4px 8px #2d2d3f;
-}
-/* === ТЕКСТ МОДАЛКИ === */
-.modal-title {
-  font-size: 2rem;
-  letter-spacing: 1px;
-  font-weight: 600;
-  color: var(--modal-title-color);
-  transition: color 0.3s ease;
+.theme-dark .social-button--1:active,
+.theme-dark .social-button--2:active,
+[data-theme="dark"] .social-button--1:active,
+[data-theme="dark"] .social-button--2:active {
+  box-shadow:
+    inset 4px 4px 8px #0d0d13,
+    inset -4px -4px 8px #2d2d3f;
+  transform: scale(0.98);
 }
 
-.modal-text {
-  font-size: 1.25rem;
-  color: var(--modal-text-color);
-  transition: color 0.3s ease;
+/* === Мобільна адаптація === */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    max-height: 85vh;
+    padding: 25px 20px;
+    overflow-y: auto;
+    border-radius: 20px;
+  }
+
+  .modal-close-button {
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+
+  .buttons-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 25px;
+  }
+
+  .social-button--1,
+  .social-button--2 {
+    width: 100%;
+    height: 50px;
+    min-width: unset;
+    font-size: 16px;
+    padding: 0 15px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.75rem;
+    margin-bottom: 15px;
+  }
+
+  .modal-content p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+  }
+
+  .social {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+  }
 }
 
-/* === СВІТЛА ТЕМА === */
-html[data-theme="light"] {
-  --modal-title-color: #000000;
-  --modal-text-color: #3b3b58;
+/* Для дуже маленьких екранів */
+@media (max-width: 480px) {
+  .modal-content {
+    padding: 20px 15px;
+    border-radius: 18px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .modal-content p {
+    font-size: 1rem;
+  }
+
+  .social-button--1,
+  .social-button--2 {
+    height: 48px;
+    font-size: 15px;
+  }
 }
 
-/* === ТЕМНА ТЕМА === */
-html[data-theme="dark"] {
-  --modal-title-color: #ffffff;
-  --modal-text-color: #d4d4e0;
+/* Анімація для іконок */
+.social {
+  transition: transform 0.3s ease;
+}
+
+.social-button--1:hover .social,
+.social-button--2:hover .social {
+  transform: scale(1.1);
+}
+
+/* Стилі для скроллбара в модалці (якщо контент довгий) */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #e0e5ec;
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #a3b1c6;
+  border-radius: 10px;
+}
+
+.theme-dark .modal-content::-webkit-scrollbar-track,
+[data-theme="dark"] .modal-content::-webkit-scrollbar-track {
+  background: #1b1b27;
+}
+
+.theme-dark .modal-content::-webkit-scrollbar-thumb,
+[data-theme="dark"] .modal-content::-webkit-scrollbar-thumb {
+  background: #2d2d3f;
 }
