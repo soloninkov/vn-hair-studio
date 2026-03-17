@@ -13,9 +13,6 @@ const Main = () => {
   // Бургер-меню
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
-  const [isMobileViewport, setIsMobileViewport] = useState(
-    () => window.innerWidth <= 768
-  );
 
   // Рефи для секцій
   const servicesRef = useRef(null);
@@ -154,14 +151,16 @@ const Main = () => {
   }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobileViewport(window.innerWidth <= 768);
-    };
+    const heroImages = [
+      `${process.env.PUBLIC_URL}/images/prson.png`,
+      `${process.env.PUBLIC_URL}/images/bacground.png`,
+      `${process.env.PUBLIC_URL}/images/bacground-b.png`,
+    ];
 
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    heroImages.forEach((src) => {
+      const image = new Image();
+      image.src = src;
+    });
   }, []);
 
   // Функція для точного скролу до заголовків з врахуванням хедера
@@ -302,9 +301,7 @@ const Main = () => {
             <img
               className="second-image-layer"
               src={
-                isMobileViewport
-                  ? `${process.env.PUBLIC_URL}/images/bacground.png`
-                  : theme === "light"
+                theme === "light"
                   ? `${process.env.PUBLIC_URL}/images/bacground.png`
                   : `${process.env.PUBLIC_URL}/images/bacground-b.png`
               }
