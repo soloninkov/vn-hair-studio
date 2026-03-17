@@ -85,6 +85,7 @@ html,
 body {
   width: 100%;
   overflow-x: hidden;
+  background: var(--main-background);
 }
 
 body {
@@ -422,8 +423,13 @@ html[data-theme="dark"] .btn {
 }
 
 @media (max-width: 769px) {
+  body {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+
   header {
     padding: 0;
+    padding-top: env(safe-area-inset-top, 0);
   }
 
   .header-content {
@@ -602,6 +608,15 @@ html[data-theme="dark"] .btn {
 .welcome-block h1 {
   font-family: var(--heading-font);
   font-size: clamp(1.875rem, 1.375rem + 2.5vw, 3.25rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin: 0;
+  color: #4b5567;
+}
+
+html[data-theme="dark"] .welcome-block h1 {
+  color: #f5f7ff;
 }
 .welcome-block h2 {
   font-family: "Nunito", sans-serif;
@@ -617,7 +632,8 @@ html[data-theme="dark"] .btn {
 /* ✅ Nabla прибрано: тепер Geist */
 .title {
   font-family: var(--heading-font);
-  font-weight: 900;
+  font-weight: 700;
+  letter-spacing: inherit;
   background: linear-gradient(
     to right,
     #4824ff,
@@ -629,6 +645,8 @@ html[data-theme="dark"] .btn {
     #4824ff
   );
   background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: transparent;
   background-size: 200%;
   animation: gradientAnimation 5s linear infinite;
