@@ -151,17 +151,26 @@ const Main = () => {
   }, []);
 
   useEffect(() => {
-    const heroImages = [
-      `${process.env.PUBLIC_URL}/images/prson.png`,
-      `${process.env.PUBLIC_URL}/images/bacground.png`,
-      `${process.env.PUBLIC_URL}/images/bacground-b.png`,
-    ];
+    const personSrc = `${process.env.PUBLIC_URL}/images/prson.png`;
+    const lightBgSrc = `${process.env.PUBLIC_URL}/images/bacground.png`;
+    const darkBgSrc = `${process.env.PUBLIC_URL}/images/bacground-b.png`;
+    const activeBgSrc = theme === "dark" ? darkBgSrc : lightBgSrc;
+    const deferredBgSrc = theme === "dark" ? lightBgSrc : darkBgSrc;
 
-    heroImages.forEach((src) => {
+    [personSrc, activeBgSrc].forEach((src) => {
       const image = new Image();
       image.src = src;
     });
-  }, []);
+
+    const deferredPreload = window.setTimeout(() => {
+      const image = new Image();
+      image.src = deferredBgSrc;
+    }, 1800);
+
+    return () => {
+      window.clearTimeout(deferredPreload);
+    };
+  }, [theme]);
 
   // Функція для точного скролу до заголовків з врахуванням хедера
   const scrollToElement = (ref, offset = 80) => {
@@ -297,6 +306,9 @@ const Main = () => {
               loading="eager"
               fetchPriority="high"
               decoding="async"
+              width="820"
+              height="820"
+              sizes="(max-width: 769px) 320px, (max-width: 1024px) 440px, 460px"
             />
             <img
               className="second-image-layer"
@@ -310,6 +322,9 @@ const Main = () => {
               loading="eager"
               fetchPriority="low"
               decoding="async"
+              width="900"
+              height="900"
+              sizes="(max-width: 769px) 320px, (max-width: 1024px) 440px, 460px"
             />
           </div>
         </div>
