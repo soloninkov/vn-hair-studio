@@ -1,28 +1,14 @@
-// import { useLayoutEffect, useState } from 'react';
-
-// const useTheme = () => { 
-//     const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
-
-//     useLayoutEffect(() => {
-//         document.documentElement.setAttribute('data-theme', theme);
-//         localStorage.setItem('theme', theme);
-//     }, [theme]);
-
-//     return { theme, setTheme };
-// }
-
-// export default useTheme;
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 const Theme = () => {
-  const [theme, setTheme] = useState(localStorage.getItem('theme') || '');
+  const [theme, setTheme] = useState(() => localStorage.getItem("theme") || "light");
 
-  useLayoutEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('theme', theme);
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
   }, [theme]);
 
   return { theme, setTheme };
-}
+};
 
 export default Theme;

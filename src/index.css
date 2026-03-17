@@ -12,10 +12,12 @@
   font-style: normal;
   font-display: swap;
 }
-@font-face {
-  font-family: "Nabla";
-  src: url("/public/fonts/nabla-v17-latin-regular.woff2") format("woff2");
-  font-display: swap;
+
+/* ✅ FIX: прибирає “вилазіння” елементів за екран */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 /* ДОДАНО: базові стилі для швидкого старту */
@@ -24,9 +26,10 @@
   --main-text-color: #000000;
   --menu-bg: #eeebff;
   --menu-text: #000000;
+  --heading-font: "Trebuchet MS", "Segoe UI", sans-serif;
 }
 
-/* ВСІ ОРИГІНАЛЬНІ СТИЛІ НЕЗМІННІ */
+/* ВСІ ОРИГІНАЛЬНІ СТИЛІ (з правками overflow + header/footer) */
 html[data-theme="light"] {
   --main-background: #ffffff;
   --header-background: #ffffff;
@@ -77,15 +80,17 @@ html[data-theme="dark"] {
   --menu-shadow: 0 4px 12px rgba(72, 36, 255, 0.35);
 }
 
+/* ✅ FIX: глобально прибираємо горизонтальний скрол */
+html,
 body {
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 0;
-  margin-bottom: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
   margin: 0;
   padding: 0;
-  height: 100vh;
-  overflow-x: hidden;
+  min-height: 100vh;
   font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -96,6 +101,7 @@ body {
 code {
   font-family: "Geist", monospace;
 }
+
 [class*="__container"] {
   max-width: 78.75rem;
   margin: 0 auto;
@@ -106,18 +112,23 @@ code {
   margin: 0 auto;
   padding: 0rem clamp(1.875rem, 2.272rem + -1.69vw, 0.938rem);
 }
-/* хедер */
+
+/* ===================== */
+/* ✅ HEADER (FIX SCROLL) */
+/* ===================== */
 header {
-  margin-left: -5vw;
-  margin-right: -5vw;
   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
-  padding: 0 5vw 0 5vw;
-  background: #ffffffe1;
+  padding: 0;
   backdrop-filter: blur(8px);
   z-index: 1000;
   background: var(--main-background);
+  border-bottom: 1px solid rgba(72, 36, 255, 0.08);
 }
+
 header a {
   font-family: "Geist", sans-serif;
   font-size: 18px;
@@ -126,22 +137,30 @@ header a {
   transition: 0.3s ease-in-out;
   cursor: pointer;
 }
+
 header a:hover {
   color: #0606cc;
   filter: drop-shadow(0px 0px 50px #0606cc);
 }
+
 .header-content {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 12px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  padding: 0 20px;
+  gap: 16px;
 }
+
 .navigation {
   display: flex;
   align-items: center;
-  padding: 0 1rem;
-  height: 13vh;
+  gap: 12px;
+  min-height: 72px;
+  width: 100%;
+  position: relative;
 }
 
 .menu {
@@ -149,10 +168,12 @@ header a:hover {
   width: 100%;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: flex-start;
   transition:
     transform 0.3s ease,
     opacity 0.3s ease;
 }
+
 .menu a {
   font-family: "Geist", sans-serif;
   text-align: center;
@@ -160,454 +181,36 @@ header a:hover {
   font-weight: 500;
   transition: color 0.3s ease;
 }
+
 .menu a:hover {
   color: #0606cc;
 }
+
 .header-button {
-  width: 100%;
   display: flex;
-  justify-content: end;
-  gap: 8px;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-left: auto;
+  width: auto;
+  flex-wrap: nowrap;
 }
 
+.burger-menu {
+  display: none;
+  padding: 0;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+/* ===================== */
 /* === НЕОНОВА КНОПКА === */
-.btn {
-  position: relative;
-  height: clamp(2.5rem, 2.011rem + 2.11vw, 3.438rem);
-  width: clamp(5.625rem, 3.345rem + 9.86vw, 10rem);
-
-  background: transparent;
-  border: 1px solid rgb(146, 148, 248);
-  color: #4824ff;
-  font-family: "Geist", sans-serif;
-  font-weight: 500;
-  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
-  transition: all 0.4s ease;
-  overflow: hidden;
-  cursor: pointer;
-  outline: none;
-  box-shadow: 0 0 10px rgba(146, 148, 248, 0.25);
-}
-
-/* Світловий “блік” */
-.btn::before {
-  content: "";
-  position: absolute;
-  height: 250%;
-  width: 40px;
-  background: rgba(255, 255, 255, 0.6);
-  filter: blur(4px);
-  transition: transform 1.2s ease;
-  transform: rotate(-20deg) translateX(-120%) translateY(-50%);
-}
-
-.btn:hover::before {
-  transform: rotate(-20deg) translateX(400%) translateY(-50%);
-}
-
-/* Hover-ефект */
-.btn:hover {
-  color: #4824ff;
-  border-color: #85aeff;
-  box-shadow: 0 0 25px rgba(146, 148, 248, 0.8);
-  transform: scale(1.05);
-}
-
-/* Ефект натискання */
-.btn:active {
-  transform: scale(0.95);
-  box-shadow: 0 0 10px rgba(146, 148, 248, 0.6);
-}
-
-/* Активна кнопка (наприклад, вибрана) */
-.btn.selected {
-  background: linear-gradient(90deg, #4824ff, #85aeff, #85ebff, #4824ff);
-  background-size: 300% 100%;
-  animation: moveGradient 6s linear infinite;
-  border: none;
-  color: #4824ff;
-  box-shadow: 0 0 25px rgba(146, 148, 248, 0.9);
-}
-
-/* Анімація рухомого градієнта */
-@keyframes moveGradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 300% 50%;
-  }
-}
-
-/* === ПЕРЕМИКАЧ (switch) === */
-.switch {
-  width: clamp(4.375rem, 3.544rem + 3.6vw, 6.375rem);
-  height: clamp(2.5rem, 2.11rem + 1.69vw, 3.438rem);
-  border-radius: clamp(0.6rem, 0.8rem + 0.5vw, 1.7rem);
-  background: transparent;
-  border: 1px solid rgb(146, 148, 248);
-  box-shadow: 0 0 10px rgba(146, 148, 248, 0.3);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease;
-  display: flex;
-  align-items: center;
-}
-
-.switch:hover {
-  box-shadow: 0 0 20px rgba(146, 148, 248, 0.8);
-  transform: scale(1.05);
-}
-
-/* Світловий ефект у середині */
-.switch::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    rgba(146, 148, 248, 0.2),
-    transparent 70%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.switch:hover::before {
-  opacity: 1;
-}
-
-.theme {
-  margin: 2px;
-  width: clamp(1.875rem, 1.329rem + 2.36vw, 3.188rem);
-  height: clamp(1.875rem, 1.329rem + 2.36vw, 3.188rem);
-  border-radius: 135px;
-  transition: 0.5s ease-in-out;
-  cursor: pointer;
-}
-
-.theme.light {
-  content: url(/public/icon/sun.png);
-}
-.theme.dark {
-  content: url(/public/icon/mon.png);
-}
-.switch:hover .theme.light .theme.dark {
-  transform: rotate(45deg);
-}
-.icon-menu {
-  content: url(/public/icon/menu.png);
-}
-.ua {
-  background: url(/public/icon/ua.png) no-repeat center;
-  background-size: contain;
-  border: none;
-  cursor: pointer;
-}
-
-.cz {
-  background: url(/public/icon/cz.png) no-repeat center;
-  background-size: contain;
-  border: none;
-  cursor: pointer;
-}
-.ua,
-.cz {
-  border-radius: 50%;
-  width: clamp(2.5rem, 2.11rem + 1.69vw, 3.438rem);
-  height: clamp(2.5rem, 2.11rem + 1.69vw, 3.438rem);
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: none;
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
-.ua:hover,
-.cz:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-.ua:active,
-.cz:active {
-  transform: scale(0.95);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-@media (max-width: 769px) {
-  /* === ГОЛОВНИЙ КОНТЕЙНЕР === */
-  .menu {
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    right: 15px;
-    background: var(--menu-bg);
-    border: 1px solid var(--menu-border);
-    width: 190px;
-    padding: 12px 10px;
-    border-radius: 16px;
-    box-shadow: var(--menu-shadow);
-    transform: translateY(-10px);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.35s ease;
-    z-index: 1000;
-    align-items: stretch;
-  }
-
-  .menu.open {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: auto;
-  }
-
-  /* === КНОПКИ МЕНЮ === */
-  .menu a {
-    display: block;
-    width: calc(100% - 30px);
-    text-align: left;
-    padding: 10px 14px;
-    margin: 6px 0;
-    border-radius: 12px;
-    font-family: "Geist", sans-serif;
-    font-weight: 600;
-    font-size: 0.9rem;
-    text-decoration: none;
-    color: var(--menu-text);
-    background: var(--menu-button-bg);
-    border: 1px solid var(--menu-button-border);
-    transition: all 0.25s ease;
-    box-shadow:
-      inset 2px 2px 5px rgba(0, 0, 0, 0.15),
-      inset -2px -2px 5px rgba(255, 255, 255, 0.4);
-    /* 🪶 ефект гравіювання тексту */
-    text-shadow:
-      1px 1px 2px rgba(255, 255, 255, 0.4),
-      -1px -1px 2px rgba(0, 0, 0, 0.25);
-  }
-
-  .menu a:hover {
-    background: var(--menu-hover-bg);
-    color: var(--menu-hover-text);
-    transform: translateX(2px);
-    box-shadow: 0 0 10px rgba(72, 36, 255, 0.5);
-    text-shadow: none; /* 🔹 при наведенні текст стає чистим */
-  }
-
-  /* === ІКОНКА БУРГЕРА === */
-  .burger-menu {
-    display: block;
-    height: 42px;
-    width: 42px;
-    border-radius: 10px;
-    background: var(--elements-color) url(/public/icon/menu.png) no-repeat
-      center;
-    background-size: 60%;
-    box-shadow:
-      2px 2px 6px rgba(0, 0, 0, 0.2),
-      -2px -2px 6px rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .burger-menu:hover {
-    box-shadow:
-      inset 1px 1px 4px rgba(0, 0, 0, 0.15),
-      inset -1px -1px 4px rgba(255, 255, 255, 0.1);
-  }
-
-  /* === ХЕДЕР === */
-  .header-content {
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10px;
-  }
-
-  .burger-menu,
-  .header-button {
-    justify-content: space-between;
-  }
-
-  /* === РОЗДІЛЬНИК МІЖ КНОПКАМИ === */
-  .menu a:not(:last-child) {
-    border-bottom: 1px solid rgba(72, 36, 255, 0.1);
-  }
-}
-
-/* welcome-block ________________*/
-.welcome-block {
-  height: 800px;
-  display: flex;
-  justify-content: space-between; /* ← тепер буде працювати */
-  align-items: center; /* ← замість place-items */
-  gap: 2rem; /* трохи повітря між лівою і правою частиною */
-  padding: 0 4vw; /* щоб не прилипало до країв */
-}
-
-/* якщо в тебе є ліва колонка з текстом */
-.welcome-block .first-block {
-  width: 50%;
-}
-
-.welcome-block h1 {
-  font-family: "Geist", sans-serif;
-  font-size: clamp(1.875rem, 1.375rem + 2.5vw, 3.25rem);
-}
-.welcome-block h2 {
-  font-family: "Nunito", sans-serif;
-  font-size: clamp(1.5rem, 1.091rem + 2.05vw, 2.625rem);
-  font-weight: 450;
-}
-.welcome-block h3 {
-  font-family: "Nunito", sans-serif;
-  font-size: clamp(1.25rem, 0.932rem + 1.59vw, 2.125rem);
-  font-weight: 300;
-}
-.title {
-  font-family: "Nabla", cursive;
-  background: linear-gradient(
-    to right,
-    #4824ff,
-    #4824ff,
-    #85ebff,
-    #eeebff,
-    #85aeff,
-    #4824ff,
-    #4824ff
-  );
-  background-clip: text;
-  color: transparent;
-  background-size: 200%;
-  animation: gradientAnimation 5s linear infinite;
-}
-
-@keyframes gradientAnimation {
-  0% {
-    background-position: 200% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* 👉 ПРАВА КОЛОНКА (картинка) */
-.main-image-box {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  /* РАНІШЕ БУЛО margin: 20px auto 0 auto; — це і ламало flex */
-  margin-top: 20px; /* тільки зверху, без auto з боків */
-  width: 45%;
-  max-width: 460px;
-}
-
-/* Перше зображення (людина) */
-.first-image-layer {
-  position: absolute;
-  z-index: 3;
-  width: 85%;
-  height: auto;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  object-fit: contain;
-  pointer-events: none;
-}
-
-/* Друге зображення (фон) */
-.second-image-layer {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  z-index: 1;
-}
-
-/* === Планшети (до 1024px) === */
-@media (max-width: 1024px) {
-  .welcome-block {
-    gap: 1.5rem;
-  }
-
-  .welcome-block .first-block {
-    width: 50%;
-  }
-
-  .main-image-box {
-    width: 55%;
-    max-width: 440px;
-    margin-top: 20px;
-  }
-
-  .first-image-layer {
-    width: 90%;
-  }
-
-  .second-image-layer {
-    width: 100%;
-  }
-}
-
-/* === Мобільна адаптація (до 769px) === */
-@media (max-width: 769px) {
-  .welcome-block {
-    display: flex;
-    flex-direction: column-reverse;
-    align-items: center;
-    padding-top: 18vh;
-    height: auto;
-  }
-
-  .welcome-block .first-block {
-    max-width: 100%;
-    text-align: center;
-    margin-top: 1rem;
-    width: 100%;
-  }
-
-  .main-image-box {
-    width: 90%;
-    max-width: 360px;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    position: relative;
-  }
-
-  .first-image-layer {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    z-index: 3;
-    transform: none;
-  }
-
-  .second-image-layer {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    z-index: 1;
-  }
-}
-
-/* __________________________________ */
-/* === КНОПКА "КОНТАКТУВАТИ" — як у портфоліо, але без синього фону === */
+/* ===================== */
 .btn {
   height: clamp(2.6rem, 2.11rem + 1.69vw, 3.438rem);
   text-decoration: none;
   border: 1px solid rgb(146, 148, 248);
   border-radius: clamp(0.6rem, 0.8rem + 0.5vw, 1.7rem);
-
   position: relative;
   overflow: hidden;
   display: inline-flex;
@@ -620,6 +223,14 @@ header a:hover {
   background: inherit;
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.header-contact-btn {
+  width: clamp(9.5rem, 8.7rem + 2vw, 11rem);
+  min-width: clamp(9.5rem, 8.7rem + 2vw, 11rem);
+  padding-inline: 1.25rem;
+  flex-shrink: 0;
 }
 
 /* Світла тема */
@@ -640,7 +251,7 @@ html[data-theme="dark"] .btn {
     -5px -5px 10px #1c1c27;
 }
 
-/* Hover — тільки світіння, без кольору */
+/* Hover — тільки світіння */
 .btn:hover {
   background: inherit;
   color: var(--elements-text-color);
@@ -651,7 +262,6 @@ html[data-theme="dark"] .btn {
   transform: translateY(-2px);
 }
 
-/* Плавне пульсування світла */
 @keyframes glowPulse {
   0% {
     box-shadow:
@@ -685,16 +295,326 @@ html[data-theme="dark"] .btn {
   left: 100%;
 }
 
-/* ============================================================ */
-/* === СЕКЦІЯ "ПОСЛУГИ" === */
-.service-block {
-  width: 100%;
-  padding: 60px 0;
-  text-align: center;
+.btn:active {
+  transform: scale(0.95);
 }
 
-.service-title {
-  font-family: "Nabla", cursive;
+/* === ПЕРЕМИКАЧ (switch) === */
+.switch {
+  width: clamp(5.2rem, 4.5rem + 2vw, 6.8rem);
+  height: clamp(2.7rem, 2.2rem + 1vw, 3.5rem);
+  min-width: 5.2rem;
+  padding: 0 0.45rem;
+  border-radius: clamp(0.9rem, 0.8rem + 0.5vw, 1.7rem);
+  background: transparent;
+  border: 1px solid rgb(146, 148, 248);
+  box-shadow: 0 0 10px rgba(146, 148, 248, 0.3);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.switch:hover {
+  box-shadow: 0 0 20px rgba(146, 148, 248, 0.8);
+  transform: scale(1.05);
+}
+
+.switch::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(146, 148, 248, 0.2),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.switch:hover::before {
+  opacity: 1;
+}
+
+.theme {
+  margin: 0;
+  width: clamp(2rem, 1.6rem + 1.4vw, 2.7rem);
+  height: clamp(2rem, 1.6rem + 1.4vw, 2.7rem);
+  border-radius: 999px;
+  transition: transform 0.35s ease-in-out;
+  cursor: pointer;
+  display: block;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.theme.light {
+  transform: translateX(0);
+}
+
+.theme.dark {
+  transform: translateX(38px);
+}
+
+@media (max-width: 769px) {
+  .theme.dark {
+    transform: translateX(30px);
+  }
+}
+
+.theme.light {
+  content: url(/public/icon/sun.png);
+}
+.theme.dark {
+  content: url(/public/icon/mon.png);
+}
+.theme.light,
+.theme.dark {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.icon-menu {
+  content: url(/public/icon/menu.png);
+}
+
+.ua,
+.cz {
+  border-radius: 50%;
+  width: clamp(2.5rem, 2.11rem + 1.69vw, 3.438rem);
+  height: clamp(2.5rem, 2.11rem + 1.69vw, 3.438rem);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  flex-shrink: 0;
+}
+
+.ua {
+  background-image: url(/public/icon/ua.png);
+}
+
+.cz {
+  background-image: url(/public/icon/cz.png);
+}
+
+.ua:hover,
+.cz:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.ua:active,
+.cz:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 769px) {
+  header {
+    padding: 0;
+  }
+
+  .header-content {
+    padding: 10px 14px;
+    gap: 10px;
+    position: relative;
+  }
+
+  .navigation {
+    min-height: 64px;
+    gap: 8px;
+  }
+
+  .header-button {
+    width: 100%;
+    margin-left: 0;
+    display: grid;
+    grid-template-columns: minmax(4.5rem, 5.125rem) repeat(
+        2,
+        2rem
+      ) auto 2.625rem;
+    align-items: center;
+    gap: clamp(0.35rem, 1.8vw, 0.6rem);
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+
+  .switch {
+    width: 82px;
+    height: 42px;
+    min-width: 64px;
+    padding: 0 6px;
+    border-radius: 14px;
+  }
+
+  .theme {
+    width: 28px;
+    height: 28px;
+    margin: 0;
+  }
+
+  .ua,
+  .cz {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+  }
+
+  .btn {
+    height: 42px;
+    padding: 0 14px;
+    font-size: 0.95rem;
+    border-radius: 14px;
+    white-space: nowrap;
+  }
+
+  .header-contact-btn {
+    width: clamp(7.75rem, 6.9rem + 3vw, 9.5rem);
+    min-width: clamp(7.75rem, 6.9rem + 3vw, 9.5rem);
+    padding-inline: 0.875rem;
+  }
+
+  .header-button > * {
+    justify-self: center;
+  }
+
+  .header-button .switch {
+    justify-self: start;
+  }
+
+  .header-button .btn {
+    justify-self: center;
+  }
+
+  .burger-menu {
+    display: block;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 12px;
+    border: none;
+    background: var(--elements-color) url(/public/icon/menu.png) no-repeat
+      center;
+    background-size: 55%;
+    box-shadow:
+      2px 2px 6px rgba(0, 0, 0, 0.18),
+      -2px -2px 6px rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    justify-self: end;
+  }
+
+  .burger-menu:hover {
+    box-shadow:
+      inset 1px 1px 4px rgba(0, 0, 0, 0.12),
+      inset -1px -1px 4px rgba(255, 255, 255, 0.08);
+  }
+
+  .menu {
+    flex-direction: column;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 14px;
+    width: min(220px, calc(100vw - 28px));
+    padding: 10px;
+    border-radius: 18px;
+    background: var(--menu-bg);
+    border: 1px solid var(--menu-border);
+    box-shadow: var(--menu-shadow);
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.35s ease;
+    z-index: 1100;
+    align-items: stretch;
+  }
+
+  .menu.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .menu a {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 12px 14px;
+    margin: 0;
+    border-radius: 12px;
+    font-family: "Geist", sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    color: var(--menu-text);
+    background: var(--menu-button-bg);
+    border: 1px solid var(--menu-button-border);
+    transition: all 0.25s ease;
+    box-shadow:
+      inset 2px 2px 5px rgba(0, 0, 0, 0.12),
+      inset -2px -2px 5px rgba(255, 255, 255, 0.25);
+    text-shadow: none;
+  }
+
+  .menu a + a {
+    margin-top: 8px;
+  }
+
+  .menu a:hover {
+    background: var(--menu-hover-bg);
+    color: var(--menu-hover-text);
+    transform: translateX(2px);
+    box-shadow: 0 0 10px rgba(72, 36, 255, 0.35);
+  }
+
+  .menu a:not(:last-child) {
+    border-bottom: none;
+  }
+}
+
+/* welcome-block ________________*/
+.welcome-block {
+  height: 800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 4vw;
+}
+
+.welcome-block .first-block {
+  width: 50%;
+}
+
+.welcome-block h1 {
+  font-family: var(--heading-font);
+  font-size: clamp(1.875rem, 1.375rem + 2.5vw, 3.25rem);
+}
+.welcome-block h2 {
+  font-family: "Nunito", sans-serif;
+  font-size: clamp(1.5rem, 1.091rem + 2.05vw, 2.625rem);
+  font-weight: 450;
+}
+.welcome-block h3 {
+  font-family: "Nunito", sans-serif;
+  font-size: clamp(1.25rem, 0.932rem + 1.59vw, 2.125rem);
+  font-weight: 300;
+}
+
+/* ✅ Nabla прибрано: тепер Geist */
+.title {
+  font-family: var(--heading-font);
+  font-weight: 900;
   background: linear-gradient(
     to right,
     #4824ff,
@@ -709,9 +629,162 @@ html[data-theme="dark"] .btn {
   color: transparent;
   background-size: 200%;
   animation: gradientAnimation 5s linear infinite;
-  font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
-  font-weight: 700;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 200% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* 👉 ПРАВА КОЛОНКА (картинка) */
+.main-image-box {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 45%;
+  max-width: 460px;
+}
+
+.first-image-layer {
+  position: absolute;
+  z-index: 3;
+  width: 85%;
+  height: auto;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.second-image-layer {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  z-index: 1;
+}
+
+@media (max-width: 1024px) {
+  .welcome-block {
+    gap: 1.5rem;
+  }
+
+  .welcome-block .first-block {
+    width: 50%;
+  }
+
+  .main-image-box {
+    width: 55%;
+    max-width: 440px;
+    margin-top: 20px;
+  }
+
+  .first-image-layer {
+    width: 90%;
+  }
+
+  .second-image-layer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 769px) {
+  .welcome-block {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    padding-top: 110px;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: auto;
+    gap: 20px;
+  }
+
+  .welcome-block .first-block {
+    max-width: 100%;
+    text-align: center;
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .main-image-box {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .first-image-layer,
+  .second-image-layer {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    z-index: 3;
+    transform: none;
+  }
+
+  .second-image-layer {
+    z-index: 1;
+  }
+
+  .welcome-block h1 {
+    font-size: 2.1rem;
+    line-height: 1.1;
+  }
+
+  .welcome-block h2 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .welcome-block h3 {
+    font-size: 1.15rem;
+    line-height: 1.35;
+  }
+}
+
+/* ============================================================ */
+/* === СЕКЦІЯ "ПОСЛУГИ" === */
+.service-block {
+  width: 100%;
+  padding: 60px 0;
+  text-align: center;
+}
+
+/* ✅ Nabla прибрано */
+.service-title {
+  font-family: var(--heading-font);
+  font-weight: 900;
+  display: inline-block;
+  background: linear-gradient(
+    to right,
+    #4824ff,
+    #85ebff,
+    #eeebff,
+    #85aeff,
+    #4824ff
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  background-size: 200%;
+  animation: gradientAnimation 5s linear infinite;
+  font-size: clamp(2.5rem, 1.136rem + 6.82vw, 6.25rem);
   margin-bottom: 40px;
+  margin-top: 0;
 }
 
 /* === СІТКА === */
@@ -754,11 +827,9 @@ html[data-theme="dark"] .btn {
   font-weight: 600;
   border: none;
   transition: all 0.3s ease;
-  box-sizing: border-box;
   cursor: default;
 }
 
-/* Світла тема — як у модалці (3D-ефект) */
 html[data-theme="light"] .tag-i {
   background: #e0e5ec;
   color: #3b3b58;
@@ -768,7 +839,6 @@ html[data-theme="light"] .tag-i {
   border: 1px solid rgba(146, 148, 248, 0.3);
 }
 
-/* Темна тема — глянцева неонова плитка */
 html[data-theme="dark"] .tag-i {
   background: #0e0e18;
   color: #eeebff;
@@ -778,7 +848,6 @@ html[data-theme="dark"] .tag-i {
     -4px -4px 10px #1c1c27;
 }
 
-/* Іконки */
 .tag-icon.icon-dark {
   background: url("/public/icon/check.png") no-repeat center center;
   width: 1.6rem;
@@ -809,14 +878,74 @@ html[data-theme="dark"] .tag-i {
   padding: 1rem 3rem;
   font-family: "Geist", sans-serif;
   font-size: 1.5rem;
-
   cursor: pointer;
   transition: all 0.3s ease;
 }
+/* =============================== */
+/* ===== PORTFOLIO SECTION ====== */
+/* =============================== */
 
+/* верхній контейнер */
+.portfolio-head {
+  width: 100%;
+  text-align: center;
+}
+
+/* блок із заголовком */
+.portfolio-head .first-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* h2 */
+.title-portfolio-h2 {
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding-bottom: 20px;
+}
+
+/* сам текст */
+.title-portfolio {
+  font-family: var(--heading-font);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 1.136rem + 6.82vw, 6.25rem);
+  background: linear-gradient(
+    to right,
+    #4824ff,
+    #85ebff,
+    #eeebff,
+    #85aeff,
+    #4824ff
+  );
+  background-clip: text;
+  color: transparent;
+  background-size: 200%;
+  animation: gradientAnimation 5s linear infinite;
+}
+
+/* контейнер кнопок */
+.portfolio-head .tag-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+/* адаптив */
+@media (max-width: 769px) {
+  .portfolio-head .tag-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
 .tag-1:hover {
   box-shadow: 1px 1px 25px 10px rgba(146, 148, 248, 0.4);
-
   color: #4824ff;
   transform: translateY(-2px);
 }
@@ -841,62 +970,6 @@ html[data-theme="dark"] .tag-i {
   left: 100%;
 }
 
-/* === АНІМАЦІЯ ГРАДІЄНТУ === */
-@keyframes gradientAnimation {
-  0% {
-    background-position: 200% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.portfolio-block {
-  height: auto;
-}
-
-.portfolio-block .first-block {
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-}
-
-.title-portfolio-h2 {
-  padding-bottom: 10px;
-}
-
-.title-portfolio {
-  font-family: "Nabla", cursive;
-  font-size: clamp(2.5rem, 1.136rem + 6.82vw, 6.25rem);
-  margin-bottom: clamp(0.938rem, 0.618rem + 1.6vw, 1.875rem);
-  background: linear-gradient(
-    to right,
-    #4824ff,
-    #4824ff,
-    #85ebff,
-    #eeebff,
-    #85aeff,
-    #4824ff,
-    #4824ff
-  );
-  background-clip: text;
-  color: transparent;
-  background-size: 200%;
-  animation: gradientAnimation 5s linear infinite;
-  margin: 0;
-}
-
-/* === КОНТЕЙНЕР КНОПОК === */
-.portfolio-block .tag-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 20px;
-  margin-bottom: 30px;
-}
-
 /* === КНОПКИ === */
 .tag {
   text-decoration: none;
@@ -915,11 +988,10 @@ html[data-theme="dark"] .tag-i {
   letter-spacing: 0.5px;
   cursor: pointer;
   transition: all 0.35s ease;
-  background: transparent; /* 🔥 більше не сірий */
+  background: transparent;
   box-shadow: 0 0 8px rgba(146, 148, 248, 0.25);
 }
 
-/* Ефект при наведенні */
 .tag:hover {
   color: #4824ff;
   border-color: #85aeff;
@@ -927,7 +999,6 @@ html[data-theme="dark"] .tag-i {
   transform: scale(1.06);
 }
 
-/* Неонова хвиля */
 .tag::before {
   content: "";
   position: absolute;
@@ -948,7 +1019,6 @@ html[data-theme="dark"] .tag-i {
   left: 100%;
 }
 
-/* === АКТИВНА КНОПКА === */
 .tag.selected,
 .tag.active {
   background: linear-gradient(90deg, #4824ff, #85aeff, #85ebff, #4824ff);
@@ -960,7 +1030,6 @@ html[data-theme="dark"] .tag-i {
   transform: scale(1.08);
 }
 
-/* Анімація градієнта */
 @keyframes moveGradient {
   0% {
     background-position: 0% 50%;
@@ -970,13 +1039,11 @@ html[data-theme="dark"] .tag-i {
   }
 }
 
-/* Ефект натискання */
 .tag:active {
   transform: scale(0.97);
   box-shadow: 0 0 10px rgba(146, 148, 248, 0.6);
 }
 
-/* === АДАПТАЦІЯ ДЛЯ МОБІЛЬНИХ === */
 @media (max-width: 600px) {
   .tag {
     font-size: 0.9rem;
@@ -984,17 +1051,6 @@ html[data-theme="dark"] .tag-i {
   }
 }
 
-/* Медіазапит для екранів <= 769px */
-@media (max-width: 769px) {
-  .portfolio-block .tag-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-  }
-  .portfolio-block .tag:nth-child(2) {
-    order: 4; /* Задає останнє місце кнопці "Стрижки" */
-  }
-}
 .carousel-image {
   width: 300px;
   height: 200px;
@@ -1074,8 +1130,10 @@ html[data-theme="dark"] .tag-i {
 
 /* ________________________ */
 /* === ЗАГОЛОВОК "CENY" === */
+/* ✅ Nabla прибрано */
 .title-price {
-  font-family: "Nabla", cursive;
+  font-family: var(--heading-font);
+  font-weight: 900;
   background: linear-gradient(
     to right,
     #4824ff,
@@ -1091,7 +1149,6 @@ html[data-theme="dark"] .tag-i {
   background-size: 200%;
   animation: price 5s linear infinite;
   font-size: clamp(2.5rem, 1.5rem + 3vw, 4rem);
-  font-weight: 700;
   margin: 0;
   padding: 0;
   text-align: left;
@@ -1116,16 +1173,14 @@ html[data-theme="dark"] .tag-i {
   align-items: flex-start;
 }
 
-/* === КОНТЕНТ У ДВОХ КОЛОНКАХ === */
 .price-block-content {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* вирівнює логотип і прайси */
+  align-items: center;
   width: 100%;
   gap: 20px;
 }
 
-/* === ЛІВА ЧАСТИНА (Ceny + логотип) === */
 .price-left {
   display: flex;
   flex-direction: column;
@@ -1154,7 +1209,6 @@ html[data-theme="dark"] .tag-i {
   transform: scale(1.05);
 }
 
-/* === ПРАВА ЧАСТИНА (список цін) === */
 .price-block-half {
   flex: 1;
   max-width: 50%;
@@ -1170,7 +1224,6 @@ html[data-theme="dark"] .tag-i {
   width: 100%;
 }
 
-/* === КАРТКИ ЦІН (3D-ефект) === */
 .tag-price {
   display: flex;
   justify-content: space-between;
@@ -1184,7 +1237,6 @@ html[data-theme="dark"] .tag-i {
   cursor: default;
 }
 
-/* 🌞 СВІТЛА ТЕМА */
 html[data-theme="light"] .tag-price {
   background: #e0e5ec;
   border: 1px solid rgba(146, 148, 248, 0.25);
@@ -1194,7 +1246,6 @@ html[data-theme="light"] .tag-price {
     -3px -3px 6px #ffffff;
 }
 
-/* 🌙 ТЕМНА ТЕМА */
 html[data-theme="dark"] .tag-price {
   background: #0f0f1a;
   border: 1px solid rgba(146, 148, 248, 0.2);
@@ -1204,13 +1255,11 @@ html[data-theme="dark"] .tag-price {
     -2px -2px 5px #1c1c27;
 }
 
-/* Hover ефект */
 .tag-price:hover {
   transform: translateY(-1px);
   box-shadow: 0 0 16px rgba(72, 36, 255, 0.25);
 }
 
-/* === ТЕКСТ І ЦІНИ === */
 .service-name {
   font-size: clamp(1.1rem, 1rem + 0.5vw, 1.5rem);
   font-weight: 500;
@@ -1236,7 +1285,6 @@ html[data-theme="dark"] .tag-price {
   margin-left: 5px;
 }
 
-/* === АДАПТАЦІЯ ПІД ПЛАНШЕТ === */
 @media (max-width: 1024px) {
   .price-block-content {
     flex-direction: column;
@@ -1273,7 +1321,6 @@ html[data-theme="dark"] .tag-price {
   }
 }
 
-/* === ДО 500px (2 плитки в ряд) === */
 @media (max-width: 500px) {
   .price-block {
     align-items: center;
@@ -1319,29 +1366,7 @@ html[data-theme="dark"] .tag-price {
   }
 }
 
-/* === МЕНШЕ 500px (по 1 плитці в ряд + центр) === */
 @media (max-width: 499px) {
-  .price-block {
-    align-items: center;
-    text-align: center;
-  }
-
-  .title-price {
-    text-align: center;
-  }
-
-  .logo__price {
-    justify-content: center;
-    margin: 0 auto;
-    max-width: 90%;
-  }
-
-  .price-block-half {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-
   .price-block-grid {
     grid-template-columns: 1fr;
     width: 90%;
@@ -1366,15 +1391,17 @@ html[data-theme="dark"] .tag-price {
 .map__container {
   padding-bottom: 100px;
 }
+
 .title-map {
-  font-family: "Geist", sans-serif;
+  font-family: var(--heading-font);
   font-size: 30px;
 }
 
+/* ✅ Nabla прибрано */
 .map-span {
-  font-family: "Nabla", cursive;
+  font-family: var(--heading-font);
+  font-weight: 900;
   font-size: 45px;
-
   background: linear-gradient(
     to right,
     #4824ff,
@@ -1399,98 +1426,70 @@ html[data-theme="dark"] .tag-price {
   gap: 20px;
 }
 
-/* Контейнер відео */
 .vertical-video-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 300px; /* Мінімальна ширина */
+  min-width: 300px;
 }
 
 .vertical-video {
-  width: 100%; /* Займає всю ширину контейнера */
-  max-width: 300px; /* Максимальна ширина */
-  height: auto; /* Висота підлаштовується під ширину */
-  aspect-ratio: 9 / 16; /* Зберігаємо співвідношення сторін */
-
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  aspect-ratio: 9 / 16;
   border: 5px solid #333;
   border-radius: 40px;
   position: relative;
   overflow: hidden;
-
-  /* Обрізаємо внутрішній вміст під форму телефону */
   clip-path: inset(0 0 0 0 round 40px);
 }
 
-/* Контейнер мапи */
 .map-block {
-  flex: 1; /* Заповнює доступну ширину */
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .styled-map-container {
-  width: 100%; /* Заповнює доступну ширину */
-  height: 533.5px; /* Стандартна висота */
-  overflow: hidden; /* Видаляємо зайві елементи */
+  width: 100%;
+  height: 533.5px;
   background: #f0f0f0;
   border: 5px solid #333;
   border-radius: 50px;
   position: relative;
   overflow: hidden;
-
-  /* Обрізаємо внутрішній вміст під форму планшета */
   clip-path: inset(0 0 0 0 round 50px);
 }
 
 .google-map {
   width: 100%;
-  height: 100%; /* Заповнює висоту контейнера */
+  height: 100%;
 }
 
 @media (max-width: 689px) {
   .content-block {
-    flex-direction: column; /* Вертикальне вирівнювання для малих екранів */
+    flex-direction: column;
   }
 
   .vertical-video-container,
   .map-block {
-    width: 100%; /* Займають всю ширину */
+    width: 100%;
   }
 
-  /* .vertical-video {
-    max-height: 350px;
-  } */
-
   .styled-map-container {
-    height: 350px; /* Фіксована висота мапи для маленьких екранів */
+    height: 350px;
     max-width: 300px;
   }
 }
 
 /* ______________________________________ блок учоби*/
-
-/* ------------------------------
-   СЕКЦІЯ "Я навчаю"
------------------------------- */
-
-.teach__container {
-  padding-bottom: 100px;
-  text-align: left;
-}
-
-/* Анімований текст "навчаю" */
-/* ------------------------------
-   СЕКЦІЯ "Я навчаю"
------------------------------- */
-
 .teach__container {
   padding-bottom: 50px;
   text-align: center;
 }
 
-/* щоб h4 не був по центру ніде, в т.ч. на мобілці */
 .teach__container h4 {
   text-align: left;
   width: 100%;
@@ -1498,9 +1497,10 @@ html[data-theme="dark"] .tag-price {
   padding-left: 10px;
 }
 
-/* Анімований текст "навчаю" */
+/* ✅ Nabla прибрано */
 .teach {
-  font-family: "Nabla", cursive;
+  font-family: var(--heading-font);
+  font-weight: 900;
   font-size: 50px;
   background: linear-gradient(
     to right,
@@ -1519,15 +1519,6 @@ html[data-theme="dark"] .tag-price {
   animation: gradientAnimation 5s linear infinite;
 }
 
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 200% 50%;
-  }
-}
-
 /* Контейнер карток */
 .card-container {
   display: flex;
@@ -1538,32 +1529,24 @@ html[data-theme="dark"] .tag-price {
   margin: 0 auto;
 }
 
-/* БАЗОВИЙ СТИЛЬ КАРТКИ */
+/* Картка */
 .card {
   position: relative;
   flex: 1 1 320px;
   max-width: 360px;
-
   padding: 26px 30px;
   border-radius: 26px;
-
   background: var(--teach-card-bg);
   border: 1px solid var(--teach-card-border);
   box-shadow: var(--teach-card-shadow);
-
   backdrop-filter: blur(22px);
   color: var(--teach-card-text);
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
   text-align: left;
 }
 
-/* ------------------------------
-   ТЕМИ
------------------------------- */
 html[data-theme="dark"] .teach__container {
   --teach-card-bg: rgba(11, 13, 30, 0.88);
   --teach-card-border: rgba(146, 148, 248, 0.7);
@@ -1580,7 +1563,6 @@ html[data-theme="light"] .teach__container {
   --teach-card-text: #111827;
 }
 
-/* Глоу для кожної картки */
 .card--barber {
   box-shadow:
     0 0 12px rgba(0, 213, 255, 0.45),
@@ -1593,7 +1575,6 @@ html[data-theme="light"] .teach__container {
     var(--teach-card-shadow);
 }
 
-/* м’який червоний */
 .card--combo {
   border-color: rgba(255, 90, 90, 0.45);
   box-shadow:
@@ -1601,9 +1582,8 @@ html[data-theme="light"] .teach__container {
     var(--teach-card-shadow);
 }
 
-/* Заголовок картки */
 .point__title {
-  font-family: "Geist", sans-serif;
+  font-family: var(--heading-font);
   font-size: 26px;
   font-weight: 600;
   margin-bottom: 18px;
@@ -1611,11 +1591,10 @@ html[data-theme="light"] .teach__container {
   text-align: left;
 }
 
-/* Список */
 .guarantees-points {
   padding: 0;
   margin: 0;
-  margin-left: 16px; /* трохи вправо від заголовка */
+  margin-left: 16px;
 }
 
 .point {
@@ -1635,9 +1614,8 @@ html[data-theme="light"] .teach__container {
   line-height: 1.3;
 }
 
-/* Ціна — завжди внизу */
 .price__teach {
-  font-family: "Geist", sans-serif;
+  font-family: var(--heading-font);
   font-size: 30px;
   font-weight: 700;
   margin-top: auto;
@@ -1646,11 +1624,6 @@ html[data-theme="light"] .teach__container {
   text-align: left;
 }
 
-/* ------------------------------
-   АДАПТИВ
------------------------------- */
-
-/* планшет/малий ноут */
 @media (max-width: 900px) {
   .teach__container {
     padding-bottom: 40px;
@@ -1662,10 +1635,9 @@ html[data-theme="light"] .teach__container {
   }
 }
 
-/* телефони */
 @media (max-width: 768px) {
   .teach__container {
-    padding-top: 10px; /* менший відступ зверху */
+    padding-top: 10px;
   }
 
   .card-container {
@@ -1674,12 +1646,12 @@ html[data-theme="light"] .teach__container {
 
   .card {
     flex: 1 1 100%;
-    max-width: 100%; /* 🔥 розтягуємо на всю ширину */
-    padding: 20px 18px; /* менше внутрішніх відступів */
+    max-width: 100%;
+    padding: 20px 18px;
   }
 
   .guarantees-points {
-    margin-left: 12px; /* трошки менше відступ вправо */
+    margin-left: 12px;
   }
 
   .point__title,
@@ -1688,7 +1660,6 @@ html[data-theme="light"] .teach__container {
   }
 }
 
-/* дуже маленькі телефони */
 @media (max-width: 480px) {
   .teach__container h4 {
     padding-left: 6px;
@@ -1717,19 +1688,19 @@ html[data-theme="light"] .teach__container {
 }
 
 /* =============footer */
+/* ✅ FIX: прибрали негативні марджини, які давали боковий скрол */
 .footer {
   height: 80px;
+  width: 100%;
   text-align: center;
   font-family: "Geist", sans-serif;
   font-size: 18px;
   border-top: 1px solid #2308aa;
-  margin-left: -5vw;
-  margin-right: -5vw;
   align-content: center;
 }
+
 .btn-up {
   position: fixed;
-
   right: 5vw;
   bottom: 6vw;
   cursor: pointer;
@@ -1743,6 +1714,7 @@ html[data-theme="light"] .teach__container {
   transform: translateY(0px);
   background: transparent;
 }
+
 @keyframes appearance {
   0% {
     opacity: 0;
@@ -1753,6 +1725,7 @@ html[data-theme="light"] .teach__container {
     transform: translateY(0px);
   }
 }
+
 .btn-up::before {
   content: "";
   transform: rotate(270deg);
@@ -1762,6 +1735,7 @@ html[data-theme="light"] .teach__container {
   background-image: url(/public/icon/arrow.png);
 }
 
+/* ONLINE COURSE SECTION (без змін по логіці, тільки Nabla ніде немає) */
 .online-course-section {
   padding: 60px 0 80px;
 }
@@ -1773,7 +1747,7 @@ html[data-theme="light"] .teach__container {
 }
 
 .online-course-section__title {
-  font-family: "Geist", sans-serif;
+  font-family: var(--heading-font);
   font-size: clamp(32px, 4.5vw, 56px);
   margin-bottom: 24px;
   line-height: 1.1;
@@ -1781,13 +1755,13 @@ html[data-theme="light"] .teach__container {
   text-align: left;
 }
 
-/* Теми для заголовка */
 html[data-theme="dark"] .online-course-section__title {
   color: #ffffff;
 }
 html[data-theme="light"] .online-course-section__title {
   color: #111111;
 }
+
 .online-course__card-wrapper {
   display: flex;
   justify-content: center;
@@ -1824,7 +1798,7 @@ html[data-theme="light"] .online-course-section {
 }
 
 .card--online .point__title {
-  font-family: "Geist", sans-serif;
+  font-family: var(--heading-font);
   font-size: 24px;
   margin-bottom: 14px;
 }
@@ -1839,16 +1813,14 @@ html[data-theme="light"] .online-course-section {
   margin-left: 12px;
 }
 
-/* Ціна */
 .card--online .price__teach {
-  font-family: "Geist", sans-serif;
+  font-family: var(--heading-font);
   margin-top: auto;
   padding-top: 16px;
   font-size: 22px;
   font-weight: 700;
 }
 
-/* Кнопки */
 .online-course__buttons {
   margin-top: 18px;
   display: flex;
@@ -1868,65 +1840,56 @@ html[data-theme="light"] .online-course-section {
   inset: 0;
   z-index: 10000;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(4px);
+  justify-content: center;
+  background: rgba(224, 229, 236, 0.8);
+  backdrop-filter: blur(8px);
 }
 
 /* КАРТКА */
 .course-login-card {
   position: relative;
-  width: min(360px, 90%);
-  border-radius: 28px;
-  padding: 32px 26px 24px;
-
+  width: min(500px, 90%);
+  border-radius: 24px;
+  padding: 40px 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-
-  background: var(--login-card-bg);
-  box-shadow: var(--login-card-shadow-main);
-  color: var(--login-card-text);
+  justify-content: center;
+  text-align: center;
+  gap: 14px;
+  background: #e0e5ec;
+  box-shadow:
+    9px 9px 16px #a3b1c6,
+    -9px -9px 16px #ffffff;
+  color: #3b3b58;
 }
 
-/* ТЕМИ */
 html[data-theme="light"] .course-login-card {
-  --login-card-bg: #e8edf8;
-  --login-card-shadow-main:
-    12px 12px 30px rgba(181, 189, 204, 0.8),
-    -12px -12px 30px rgba(255, 255, 255, 1);
-  --login-card-text: #1f2933;
-  --login-input-bg: #e8edf8;
+  --login-input-bg: #e0e5ec;
   --login-input-shadow:
-    inset 4px 4px 9px rgba(181, 189, 204, 0.9),
-    inset -4px -4px 9px rgba(255, 255, 255, 0.9);
-  --login-submit-bg: #e8edf8;
-  --login-submit-shadow:
-    8px 8px 18px rgba(181, 189, 204, 0.85),
-    -8px -8px 18px rgba(255, 255, 255, 1);
+    inset 4px 4px 8px #a3b1c6,
+    inset -4px -4px 8px #ffffff;
 }
 
 html[data-theme="dark"] .course-login-card {
-  --login-card-bg: #0c1120;
-  --login-card-shadow-main:
-    12px 12px 30px rgba(0, 0, 0, 0.9), -12px -12px 30px rgba(40, 50, 90, 0.9);
-  --login-card-text: #e5e9f5;
-  --login-input-bg: #0c1120;
+  background: #1b1b27;
+  box-shadow:
+    9px 9px 16px #0d0d13,
+    -9px -9px 16px #2d2d3f;
+  color: #d4d4e0;
+  --login-input-bg: #1b1b27;
   --login-input-shadow:
-    inset 4px 4px 9px rgba(0, 0, 0, 0.95),
-    inset -4px -4px 9px rgba(45, 60, 110, 0.6);
-  --login-submit-bg: #0c1120;
-  --login-submit-shadow:
-    8px 8px 18px rgba(0, 0, 0, 0.9), -8px -8px 18px rgba(45, 60, 110, 0.9);
+    inset 4px 4px 8px #0d0d13,
+    inset -4px -4px 8px #2d2d3f;
 }
 
-/* ХРЕСТИК */
+html[data-theme="dark"] .course-login__backdrop {
+  background: rgba(10, 10, 20, 0.85);
+  backdrop-filter: blur(10px);
+}
+
 .course-login-card__close {
-  position: absolute;
-  top: 18px;
-  right: 18px;
   position: absolute;
   top: 20px;
   right: 20px;
@@ -1940,11 +1903,19 @@ html[data-theme="dark"] .course-login-card {
     5px 5px 10px #a3b1c6,
     -5px -5px 10px #ffffff;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #606060;
+  line-height: 1;
 }
+
 .course-login-card__close:hover {
   box-shadow:
     inset 3px 3px 6px #a3b1c6,
     inset -3px -3px 6px #ffffff;
+  color: #000;
 }
 
 .course-login-card__close::before,
@@ -1955,7 +1926,7 @@ html[data-theme="dark"] .course-login-card {
   left: 50%;
   width: 18px;
   height: 2px;
-  background-color: #606060;
+  background-color: currentColor;
   transition: all 0.3s ease;
 }
 
@@ -1968,12 +1939,20 @@ html[data-theme="dark"] .course-login-card {
 }
 
 html[data-theme="dark"] .course-login-card__close {
-  background: rgba(15, 23, 42, 0.8);
-  border-color: rgba(148, 163, 255, 0.7);
-  color: #e5e9f5;
+  background: #1b1b27;
+  box-shadow:
+    5px 5px 10px #0d0d13,
+    -5px -5px 10px #2d2d3f;
+  color: #c7c7d6;
 }
 
-/* АВАТАР */
+html[data-theme="dark"] .course-login-card__close:hover {
+  box-shadow:
+    inset 3px 3px 6px #0d0d13,
+    inset -3px -3px 6px #2d2d3f;
+  color: #fff;
+}
+
 .course-login-card__avatar {
   width: 68px;
   height: 68px;
@@ -1983,114 +1962,156 @@ html[data-theme="dark"] .course-login-card__close {
   justify-content: center;
   background: var(--login-input-bg);
   box-shadow:
-    8px 8px 18px rgba(0, 0, 0, 0.08),
-    -8px -8px 18px rgba(255, 255, 255, 0.9);
+    6px 6px 12px #a3b1c6,
+    -6px -6px 12px #ffffff;
 }
 
 html[data-theme="dark"] .course-login-card__avatar {
   box-shadow:
-    8px 8px 18px rgba(0, 0, 0, 0.9),
-    -8px -8px 18px rgba(45, 60, 110, 0.9);
+    6px 6px 12px #0d0d13,
+    -6px -6px 12px #2d2d3f;
 }
 
 .course-login-card__avatar-icon {
   font-size: 26px;
 }
 
-/* ТЕКСТИ */
 .course-login-card__title {
-  font-family: "Geist", sans-serif;
-  font-size: 22px;
-  font-weight: 700;
+  font-family: var(--heading-font);
+  font-size: 2rem;
+  font-weight: 600;
   margin: 0;
+  letter-spacing: 1px;
+  color: inherit;
+  text-shadow:
+    1px 1px 2px #ffffff,
+    -1px -1px 2px #a3b1c6;
 }
 
 .course-login-card__subtitle {
   font-family: "Nunito", sans-serif;
-  font-size: 14px;
-  opacity: 0.8;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.5;
   margin: 0;
+  color: #4b4b66;
+  text-shadow:
+    1px 1px 2px #ffffff,
+    -1px -1px 2px #a3b1c6;
 }
 
-/* ФОРМА */
-/* ФОРМА — ТЕПЕР ПІГУЛКИ ВУЖЧІ З ОДНАКОВИМ ВІДСТУПОМ ЗЛІВА/СПРАВА */
+html[data-theme="dark"] .course-login-card__title {
+  color: #ffffff;
+  text-shadow:
+    1px 1px 2px #0d0d13,
+    -1px -1px 2px #2d2d3f;
+}
+
+html[data-theme="dark"] .course-login-card__subtitle {
+  color: #e0e0e0;
+  text-shadow:
+    1px 1px 2px #0d0d13,
+    -1px -1px 2px #2d2d3f;
+}
+
+.course-login-card__error {
+  width: 100%;
+  margin: 4px 0 0;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #d43c5c;
+}
+
 .course-login-card__form {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 14px;
   margin-top: 12px;
-
-  /* центруємо вміст всередині картки */
   align-items: center;
 }
 
-/* ПОЛЯ */
 .course-login-card__field {
   position: relative;
-  /* 🔥 ширина менша за картку: по ~20px з кожного боку */
   width: calc(100% - 40px);
-
   display: flex;
   align-items: center;
-
   padding: 10px 18px;
   border-radius: 16px;
   background: var(--login-input-bg);
   box-shadow: var(--login-input-shadow);
+  color: inherit;
 }
 
-/* Іконки */
 .course-login-card__field-icon {
   font-size: 16px;
   opacity: 0.7;
   flex-shrink: 0;
 }
 
-/* зліва */
 .course-login-card__field-icon:first-child {
   margin-right: 8px;
 }
 
-/* справа (око) */
 .course-login-card__field-icon--right {
   margin-left: 8px;
 }
 
-/* INPUT */
 .course-login-card__input {
   border: none;
   outline: none;
   background: transparent;
   font-family: "Nunito", sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   width: 100%;
   color: inherit;
 }
 
 .course-login-card__input::placeholder {
-  opacity: 0.6;
+  opacity: 0.7;
 }
 
-/* КНОПКА SIGN IN — така ж ширина, як поля */
 .course-login-card__submit {
-  width: calc(100% - 40px); /* ті самі відступи, що й у полів */
+  width: calc(100% - 40px);
   margin-top: 8px;
-  padding: 12px 18px;
-  border-radius: 16px;
+  height: 55px;
+  padding: 0 20px;
+  border-radius: 55px;
   border: none;
   cursor: pointer;
   font-family: "Geist", sans-serif;
-  font-weight: 600;
-  font-size: 15px;
-  background: var(--login-submit-bg);
-  box-shadow: var(--login-submit-shadow);
-  color: inherit;
-  transition: 0.2s ease;
+  font-weight: 500;
+  font-size: 18px;
+  color: #3b3b58;
+  background: #e0e5ec;
+  box-shadow:
+    6px 6px 12px #a3b1c6,
+    -6px -6px 12px #ffffff;
+  transition: all 0.3s ease;
 }
 
 .course-login-card__submit:hover:not(:disabled) {
-  transform: translateY(-1px);
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow:
+    8px 8px 16px #a3b1c6,
+    -8px -8px 16px #ffffff;
+}
+
+html[data-theme="dark"] .course-login-card__submit {
+  background: #1b1b27;
+  color: #c7c7d6;
+  box-shadow:
+    6px 6px 12px #0d0d13,
+    -6px -6px 12px #2d2d3f;
+}
+
+html[data-theme="dark"] .course-login-card__submit:hover:not(:disabled) {
+  color: #fff;
+  box-shadow:
+    8px 8px 16px #0d0d13,
+    -8px -8px 16px #2d2d3f;
 }
 
 .course-login-card__submit:disabled {
@@ -2098,19 +2119,61 @@ html[data-theme="dark"] .course-login-card__avatar {
   cursor: default;
 }
 
-/* Адаптив */
+.course-login-card__submit:active {
+  box-shadow:
+    inset 4px 4px 8px #a3b1c6,
+    inset -4px -4px 8px #ffffff;
+  transform: scale(0.98);
+}
+
+html[data-theme="dark"] .course-login-card__submit:active {
+  box-shadow:
+    inset 4px 4px 8px #0d0d13,
+    inset -4px -4px 8px #2d2d3f;
+}
+
 @media (max-width: 480px) {
   .course-login-card {
-    width: 90%;
-    padding: 26px 18px 20px;
-    border-radius: 24px;
+    width: 95%;
+    max-height: 85vh;
+    padding: 25px 20px;
+    overflow-y: auto;
+    border-radius: 20px;
+  }
+
+  .course-login-card__close {
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
   }
 
   .course-login-card__form {
-    padding: 0 4px;
+    padding: 0;
   }
 
   .course-login-card__title {
-    font-size: 20px;
+    font-size: 1.75rem;
   }
+
+  .course-login-card__subtitle {
+    font-size: 1rem;
+  }
+
+  .course-login-card__field,
+  .course-login-card__submit {
+    width: 100%;
+  }
+
+  .course-login-card__submit {
+    height: 50px;
+    font-size: 16px;
+    padding: 0 15px;
+  }
+}
+iframe,
+video,
+img {
+  display: block;
 }
