@@ -1,13 +1,15 @@
 {
   "files": {
-    "main.css": "/vn-hair-studio/static/css/main.1e48cf0e.css",
+    "main.css": "/vn-hair-studio/static/css/main.540d5465.css",
     "main.js": "/vn-hair-studio/static/js/main.e4e2244d.js",
     "static/js/453.7472ce0e.chunk.js": "/vn-hair-studio/static/js/453.7472ce0e.chunk.js",
     "static/media/3.jpeg": "/vn-hair-studio/static/media/3.b9a64c06140a2b83fb81.jpeg",
+    "static/media/Nunito-VariableFont_wght.ttf": "/vn-hair-studio/static/media/Nunito-VariableFont_wght.f55558447983dc135e34.ttf",
     "static/media/photo_2024-11-26 00.15.50.jpeg": "/vn-hair-studio/static/media/photo_2024-11-26 00.15.50.e49d755c8f285b9a01ad.jpeg",
     "static/media/1.jpeg": "/vn-hair-studio/static/media/1.5d7f7af9b01798074b25.jpeg",
     "static/media/photo_2024-11-26 00.15.48.jpeg": "/vn-hair-studio/static/media/photo_2024-11-26 00.15.48.f8c0ba78c7503302e414.jpeg",
     "static/media/photo_2024-11-26 00.15.44.jpeg": "/vn-hair-studio/static/media/photo_2024-11-26 00.15.44.86f3dfca9e3e8b62a5e3.jpeg",
+    "static/media/Manrope-VariableFont_wght.ttf": "/vn-hair-studio/static/media/Manrope-VariableFont_wght.efe78270bd691bb8d70b.ttf",
     "static/media/photo_2024-11-26 00.15.49.jpeg": "/vn-hair-studio/static/media/photo_2024-11-26 00.15.49.be4835d6418e7826f9d2.jpeg",
     "static/media/photo_2024-11-26 00.15.45.jpeg": "/vn-hair-studio/static/media/photo_2024-11-26 00.15.45.54216c48747afd110b30.jpeg",
     "static/media/photo_2024-11-26 00.15.47.jpeg": "/vn-hair-studio/static/media/photo_2024-11-26 00.15.47.5b4fae9a194679059207.jpeg",
@@ -28,19 +30,17 @@
     "static/media/photo_2025-11-01 12.05.46.jpeg": "/vn-hair-studio/static/media/photo_2025-11-01 12.05.46.695bfc0033d9e89e0590.jpeg",
     "static/media/cz.png": "/vn-hair-studio/static/media/cz.c6ead1aa124dd2095a5c.png",
     "static/media/arrow.png": "/vn-hair-studio/static/media/arrow.f433ab0c7605357522e1.png",
-    "static/media/nunito-v32-latin-regular.woff2": "/vn-hair-studio/static/media/nunito-v32-latin-regular.1426bd429b6b372852b9.woff2",
     "static/media/ua.png": "/vn-hair-studio/static/media/ua.4980fa991424d2079663.png",
-    "static/media/geist-v4-latin-regular.woff2": "/vn-hair-studio/static/media/geist-v4-latin-regular.03df01fbdbdae86eb95a.woff2",
     "static/media/instagram.svg": "/vn-hair-studio/static/media/instagram.5154914378b0a587a5e2.svg",
     "static/media/phone.svg": "/vn-hair-studio/static/media/phone.714b728c9d1cd613662e.svg",
     "index.html": "/vn-hair-studio/index.html",
     "static/media/telegram.svg": "/vn-hair-studio/static/media/telegram.adc059719f9a09832c06.svg",
-    "main.1e48cf0e.css.map": "/vn-hair-studio/static/css/main.1e48cf0e.css.map",
+    "main.540d5465.css.map": "/vn-hair-studio/static/css/main.540d5465.css.map",
     "main.e4e2244d.js.map": "/vn-hair-studio/static/js/main.e4e2244d.js.map",
     "453.7472ce0e.chunk.js.map": "/vn-hair-studio/static/js/453.7472ce0e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1e48cf0e.css",
+    "static/css/main.540d5465.css",
     "static/js/main.e4e2244d.js"
   ]
 }
