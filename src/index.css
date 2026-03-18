@@ -27,6 +27,7 @@
   --menu-bg: #eeebff;
   --menu-text: #000000;
   --heading-font: "Trebuchet MS", "Segoe UI", sans-serif;
+  color-scheme: light;
 }
 
 /* ВСІ ОРИГІНАЛЬНІ СТИЛІ (з правками overflow + header/footer) */
@@ -78,6 +79,7 @@ html[data-theme="dark"] {
   --menu-hover-bg: #4824ff;
   --menu-hover-text: #ffffff;
   --menu-shadow: 0 4px 12px rgba(72, 36, 255, 0.35);
+  color-scheme: dark;
 }
 
 /* ✅ FIX: глобально прибираємо горизонтальний скрол */
