@@ -1,13 +1,15 @@
 @font-face {
-  font-family: "Geist";
-  src: url("../public/fonts/geist-v4-latin-regular.woff2") format("woff2");
+  font-family: "Manrope";
+  src: url("../public/fonts/Manrope/Manrope-VariableFont_wght.ttf")
+    format("truetype");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Nunito";
-  src: url("../public/fonts/nunito-v32-latin-regular.woff2") format("woff2");
+  src: url("../public/fonts/Nunito/Nunito-VariableFont_wght.ttf")
+    format("truetype");
   font-weight: 200 1000;
   font-style: normal;
   font-display: swap;
@@ -26,7 +28,7 @@
   --main-text-color: #000000;
   --menu-bg: #eeebff;
   --menu-text: #000000;
-  --heading-font: "Trebuchet MS", "Segoe UI", sans-serif;
+  --heading-font: "Manrope", sans-serif;
   color-scheme: light;
 }
 
@@ -105,7 +107,7 @@ body {
 }
 
 code {
-  font-family: "Geist", monospace;
+  font-family: "Manrope", monospace;
 }
 
 [class*="__container"] {
@@ -136,7 +138,7 @@ header {
 }
 
 header a {
-  font-family: "Geist", sans-serif;
+  font-family: "Manrope", sans-serif;
   font-size: 18px;
   font-weight: 500;
   margin-right: 3%;
@@ -181,7 +183,7 @@ header a:hover {
 }
 
 .menu a {
-  font-family: "Geist", sans-serif;
+  font-family: "Manrope", sans-serif;
   text-align: center;
   font-size: 18px;
   font-weight: 500;
@@ -223,7 +225,7 @@ header a:hover {
   justify-content: center;
   align-items: center;
   padding: 1rem 3rem;
-  font-family: "Geist", sans-serif;
+  font-family: "Manrope", sans-serif;
   font-size: clamp(1rem, 0.7rem + 0.5vw, 1.25rem);
   color: var(--elements-text-color);
   background: inherit;
@@ -563,7 +565,7 @@ html[data-theme="dark"] .btn {
     padding: 12px 14px;
     margin: 0;
     border-radius: 12px;
-    font-family: "Geist", sans-serif;
+    font-family: "Manrope", sans-serif;
     font-weight: 600;
     font-size: 0.95rem;
     text-decoration: none;
@@ -934,7 +936,7 @@ html[data-theme="dark"] .tag-i {
   justify-content: center;
   align-items: center;
   padding: 1rem 3rem;
-  font-family: "Geist", sans-serif;
+  font-family: "Manrope", sans-serif;
   font-size: 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1051,7 +1053,7 @@ html[data-theme="dark"] .tag-i {
   justify-content: center;
   align-items: center;
   padding: 1rem 1.5rem;
-  font-family: "Geist", sans-serif;
+  font-family: "Manrope", sans-serif;
   font-size: clamp(1rem, 0.9rem + 0.5vw, 1.3rem);
   color: #4824ff;
   text-transform: uppercase;
@@ -1770,7 +1772,7 @@ html[data-theme="light"] .teach__container {
   height: 80px;
   width: 100%;
   text-align: center;
-  font-family: "Geist", sans-serif;
+  font-family: "Manrope", sans-serif;
   font-size: 18px;
   border-top: 1px solid #2308aa;
   align-content: center;
@@ -2157,7 +2159,7 @@ html[data-theme="dark"] .course-login-card__subtitle {
   border-radius: 55px;
   border: none;
   cursor: pointer;
-  font-family: "Geist", sans-serif;
+  font-family: "Manrope", sans-serif;
   font-weight: 500;
   font-size: 18px;
   color: #3b3b58;
