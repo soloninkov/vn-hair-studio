@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/vn-hair-studio/static/css/main.456b9fc7.css",
-    "main.js": "/vn-hair-studio/static/js/main.5216b82c.js",
+    "main.css": "/vn-hair-studio/static/css/main.74d37cfa.css",
+    "main.js": "/vn-hair-studio/static/js/main.c371fcb2.js",
     "static/js/453.7472ce0e.chunk.js": "/vn-hair-studio/static/js/453.7472ce0e.chunk.js",
     "static/media/photo_2026-03-18 21.48.55.jpeg": "/vn-hair-studio/static/media/photo_2026-03-18 21.48.55.d821fb92f9cd9dd27c15.jpeg",
     "static/media/photo_2026-03-18 21.48.57.jpeg": "/vn-hair-studio/static/media/photo_2026-03-18 21.48.57.3eabb880127f35dbe71b.jpeg",
@@ -56,12 +56,12 @@
     "static/media/phone.svg": "/vn-hair-studio/static/media/phone.714b728c9d1cd613662e.svg",
     "index.html": "/vn-hair-studio/index.html",
     "static/media/telegram.svg": "/vn-hair-studio/static/media/telegram.adc059719f9a09832c06.svg",
-    "main.456b9fc7.css.map": "/vn-hair-studio/static/css/main.456b9fc7.css.map",
-    "main.5216b82c.js.map": "/vn-hair-studio/static/js/main.5216b82c.js.map",
+    "main.74d37cfa.css.map": "/vn-hair-studio/static/css/main.74d37cfa.css.map",
+    "main.c371fcb2.js.map": "/vn-hair-studio/static/js/main.c371fcb2.js.map",
     "453.7472ce0e.chunk.js.map": "/vn-hair-studio/static/js/453.7472ce0e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.456b9fc7.css",
-    "static/js/main.5216b82c.js"
+    "static/css/main.74d37cfa.css",
+    "static/js/main.c371fcb2.js"
   ]
 }
