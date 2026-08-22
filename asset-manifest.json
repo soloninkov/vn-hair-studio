@@ -1,8 +1,7 @@
 {
   "files": {
-    "main.css": "/vn-hair-studio/static/css/main.74d37cfa.css",
-    "main.js": "/vn-hair-studio/static/js/main.c371fcb2.js",
-    "static/js/453.7472ce0e.chunk.js": "/vn-hair-studio/static/js/453.7472ce0e.chunk.js",
+    "main.css": "/vn-hair-studio/static/css/main.3e4cb753.css",
+    "main.js": "/vn-hair-studio/static/js/main.1fa29d1f.js",
     "static/media/photo_2026-03-18 21.48.55.jpeg": "/vn-hair-studio/static/media/photo_2026-03-18 21.48.55.d821fb92f9cd9dd27c15.jpeg",
     "static/media/photo_2026-03-18 21.48.57.jpeg": "/vn-hair-studio/static/media/photo_2026-03-18 21.48.57.3eabb880127f35dbe71b.jpeg",
     "static/media/photo_2026-03-18 21.48.53.jpeg": "/vn-hair-studio/static/media/photo_2026-03-18 21.48.53.6a0ee8740a8124aa41c9.jpeg",
@@ -52,16 +51,15 @@
     "static/media/cz.png": "/vn-hair-studio/static/media/cz.c6ead1aa124dd2095a5c.png",
     "static/media/arrow.png": "/vn-hair-studio/static/media/arrow.f433ab0c7605357522e1.png",
     "static/media/ua.png": "/vn-hair-studio/static/media/ua.4980fa991424d2079663.png",
-    "static/media/instagram.svg": "/vn-hair-studio/static/media/instagram.5154914378b0a587a5e2.svg",
-    "static/media/phone.svg": "/vn-hair-studio/static/media/phone.714b728c9d1cd613662e.svg",
     "index.html": "/vn-hair-studio/index.html",
+    "static/media/instagram.svg": "/vn-hair-studio/static/media/instagram.5154914378b0a587a5e2.svg",
+    "static/media/phone.svg": "/vn-hair-studio/static/media/phone.066b575ed5b02b999103.svg",
     "static/media/telegram.svg": "/vn-hair-studio/static/media/telegram.adc059719f9a09832c06.svg",
-    "main.74d37cfa.css.map": "/vn-hair-studio/static/css/main.74d37cfa.css.map",
-    "main.c371fcb2.js.map": "/vn-hair-studio/static/js/main.c371fcb2.js.map",
-    "453.7472ce0e.chunk.js.map": "/vn-hair-studio/static/js/453.7472ce0e.chunk.js.map"
+    "main.3e4cb753.css.map": "/vn-hair-studio/static/css/main.3e4cb753.css.map",
+    "main.1fa29d1f.js.map": "/vn-hair-studio/static/js/main.1fa29d1f.js.map"
   },
   "entrypoints": [
-    "static/css/main.74d37cfa.css",
-    "static/js/main.c371fcb2.js"
+    "static/css/main.3e4cb753.css",
+    "static/js/main.1fa29d1f.js"
   ]
 }

@@ -1,7 +1,9 @@
 {
   "short_name": "VN Hair",
   "name": "VN Hair Studio",
-  "id": "/vn-hair-studio/?v=20260318-1",
+  "description": "VN Hair Studio у České Budějovice: стрижки, зачіски, оформлення бороди, догляд за волоссям і навчання перукарів.",
+  "id": "/vn-hair-studio/?v=20260724-1",
+  "scope": "/vn-hair-studio/",
   "icons": [
     {
       "src": "favicon.ico",
@@ -9,8 +11,9 @@
       "type": "image/x-icon"
     }
   ],
-  "start_url": "/vn-hair-studio/?v=20260318-1",
+  "start_url": "/vn-hair-studio/?v=20260724-1",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "theme_color": "#ffffff",
   "background_color": "#ffffff"
 }
