@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://soloninkov.github.io/vn-hair-studio/sitemap.xml
+Sitemap: https://vnhairstudio.cz/sitemap.xml
