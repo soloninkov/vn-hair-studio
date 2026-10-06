@@ -1,9 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.795cdbfc.css",
-    "main.js": "/static/js/main.71aed603.js",
+    "main.js": "/static/js/main.e43461a9.js",
+    "static/media/IMG_4532.jpg": "/static/media/IMG_4532.f64a3f012fcd88641e81.jpg",
+    "static/media/IMG_4582.jpg": "/static/media/IMG_4582.7336c6c2b3a80f256994.jpg",
+    "static/media/IMG_4547.jpg": "/static/media/IMG_4547.ef7e2e2a9df3e7df0cec.jpg",
+    "static/media/IMG_4498.jpg": "/static/media/IMG_4498.33e996c7331fd7232d1c.jpg",
+    "static/media/IMG_4515.jpg": "/static/media/IMG_4515.d3d134c4eac77429db7f.jpg",
     "static/media/copy_5484CCD7-8E1A-4263-850F-3067C5808251.png": "/static/media/copy_5484CCD7-8E1A-4263-850F-3067C5808251.d0923d069a73a4ec3e0b.png",
+    "static/media/IMG_4510.jpg": "/static/media/IMG_4510.aa61078213f09727001f.jpg",
     "static/media/copy_2ECF7A8F-3C72-424E-80B5-5B02600D22F9.png": "/static/media/copy_2ECF7A8F-3C72-424E-80B5-5B02600D22F9.c0e7633160301fed4553.png",
+    "static/media/IMG_4595.jpg": "/static/media/IMG_4595.0ad7d6d0e870449c67eb.jpg",
     "static/media/D1762801-7858-4CA0-84F8-EBEDB4B9D965.jpg": "/static/media/D1762801-7858-4CA0-84F8-EBEDB4B9D965.c6fadc21bc5b74ce140f.jpg",
     "static/media/photo_2026-03-18 21.48.55.jpeg": "/static/media/photo_2026-03-18 21.48.55.d821fb92f9cd9dd27c15.jpeg",
     "static/media/photo_2026-03-18 21.48.57.jpeg": "/static/media/photo_2026-03-18 21.48.57.3eabb880127f35dbe71b.jpeg",
@@ -26,9 +33,7 @@
     "static/media/photo_2026-03-18 21.25.09.jpeg": "/static/media/photo_2026-03-18 21.25.09.53946a24e1ff7703b56f.jpeg",
     "static/media/3.jpeg": "/static/media/3.b9a64c06140a2b83fb81.jpeg",
     "static/media/photo_2026-03-18 21.29.14.jpeg": "/static/media/photo_2026-03-18 21.29.14.55dab306a4c50913edd4.jpeg",
-    "static/media/843CE025-9D18-4CC6-8B1E-AE8F3EDB00C5 копія.jpg": "/static/media/843CE025-9D18-4CC6-8B1E-AE8F3EDB00C5 копія.d35dad6fd34fc12acbb5.jpg",
     "static/media/843CE025-9D18-4CC6-8B1E-AE8F3EDB00C5.jpg": "/static/media/843CE025-9D18-4CC6-8B1E-AE8F3EDB00C5.d35dad6fd34fc12acbb5.jpg",
-    "static/media/IMG_4344 копія.jpg": "/static/media/IMG_4344 копія.bcb518bf54faee65cea8.jpg",
     "static/media/IMG_4344.jpg": "/static/media/IMG_4344.bcb518bf54faee65cea8.jpg",
     "static/media/Nunito-VariableFont_wght.ttf": "/static/media/Nunito-VariableFont_wght.f55558447983dc135e34.ttf",
     "static/media/IMG_7618.jpg": "/static/media/IMG_7618.9afda0d3cfec71dd17ce.jpg",
@@ -99,10 +104,10 @@
     "static/media/phone.svg": "/static/media/phone.066b575ed5b02b999103.svg",
     "static/media/telegram.svg": "/static/media/telegram.adc059719f9a09832c06.svg",
     "main.795cdbfc.css.map": "/static/css/main.795cdbfc.css.map",
-    "main.71aed603.js.map": "/static/js/main.71aed603.js.map"
+    "main.e43461a9.js.map": "/static/js/main.e43461a9.js.map"
   },
   "entrypoints": [
     "static/css/main.795cdbfc.css",
-    "static/js/main.71aed603.js"
+    "static/js/main.e43461a9.js"
   ]
 }
